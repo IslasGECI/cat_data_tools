@@ -1,4 +1,4 @@
-from gatos_socorro import sum_monthly_effort_and_captures, summarize_effort_captures_and_trappers
+from cat_data_tools import sum_monthly_effort_and_captures, summarize_effort_captures_and_trappers
 import pandas as pd
 import numpy as np
 
