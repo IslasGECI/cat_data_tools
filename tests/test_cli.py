@@ -51,4 +51,4 @@ def test_app():
         ],
     )
     assert result.exit_code == 0
-    # os.remove(output_path)
+    os.remove(output_path)
