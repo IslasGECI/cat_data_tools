@@ -1,5 +1,6 @@
 from cat_data_tools import app
 from typer.testing import CliRunner
+import os
 
 
 runner = CliRunner()
@@ -19,6 +20,7 @@ def test_app():
     )
     assert "XX" not in result.stdout
     assert result.exit_code == 0
+    output_path = "tests/data/monthly_summary.csv"
     result = runner.invoke(
         app,
         [
@@ -28,7 +30,8 @@ def test_app():
             "--monthly-trappers-path",
             "tests/data/monthly_trappers.csv",
             "--output-path",
-            "tests/data/monthly_summary.csv",
+            output_path,
         ],
     )
     assert result.exit_code == 0
+    os.remove(output_path)

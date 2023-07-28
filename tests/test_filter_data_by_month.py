@@ -6,6 +6,7 @@ from cat_data_tools import (
 import pandas as pd
 import numpy as np
 import subprocess
+import os
 
 
 weekly_data_path = "tests/data/weekly_effort_ISO.csv"
@@ -15,7 +16,6 @@ monthly_trappers_path = "tests/data/monthly_trappers.csv"
 def test_sum_monthly_effort_and_captures():
     effort_data = pd.read_csv(weekly_data_path)
     filtered_data = sum_monthly_effort_and_captures(effort_data)
-    print(filtered_data)
     expected_rows = 7
     obtained_rows = len(filtered_data)
     assert obtained_rows == expected_rows
@@ -48,3 +48,4 @@ def test_write_monthly_summary():
     obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
     assert ",NA" in obtained
     assert ",Esfuerzo" not in obtained
+    os.remove(output_path)
