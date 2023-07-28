@@ -10,5 +10,8 @@ description-file = "README.md"
 home-page = "https://github.com/IslasGECI/cat_data_tools"
 module = "cat_data_tools"
 requires = [
+    "numpy",
+    "pandas",
+    "typer"
 ]
 requires-python=">=3.9"
