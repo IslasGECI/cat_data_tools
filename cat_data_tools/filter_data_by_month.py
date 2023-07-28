@@ -17,5 +17,5 @@ def add_date_column(monthly_data):
 
 def sum_monthly_effort_and_captures(effort_data: pd.DataFrame):
     effort_data["month_and_year"] = effort_data.Fecha.str[:7]
-    monthly_grouped_data = effort_data.groupby(by="month_and_year", sort=False)
+    monthly_grouped_data = effort_data.groupby(by="month_and_year")
     return monthly_grouped_data.sum(numeric_only=True)
