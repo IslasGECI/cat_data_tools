@@ -13,7 +13,7 @@ def cli():
 @click.option("--output-path", "-w", type=click.Path(), help="Output file path")
 @click.option("--initial-year", "-i", type=int, help="Initial year")
 @click.option("--final-year", "-f", default=3000, type=int, help="Final year")
-def write_filtered_data(input_path, output_path, initial_year, final_year):
+def write_yearly_summary(input_path, output_path, initial_year, final_year):
     dataframe = pd.read_csv(input_path)
     filtered_dataframe = filter_data_between_years(dataframe, initial_year, final_year)
     filtered_dataframe.to_csv(output_path, index=False, na_rep="NA")
