@@ -42,6 +42,6 @@ def test_filter_data_between_years():
 
     obtained = filter_data_between_years(monthly_data, initial_year)
     obtained_length = len(obtained)
-    expected = pd.read_csv("tests/data/filtered_data_after_2016.csv")
+    expected = pd.read_csv("tests/data/filtered_data_between_years_2016_and_2260.csv")
     expected_length = len(expected)
     assert obtained_length == expected_length

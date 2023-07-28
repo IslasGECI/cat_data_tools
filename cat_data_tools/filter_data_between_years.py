@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def filter_data_between_years(monthly_data, initial_year, final_year=3000):
+def filter_data_between_years(monthly_data, initial_year, final_year=2260):
     data_after_year = filter_data_after_year(monthly_data, initial_year)
     return filter_data_before_year(data_after_year, final_year)
 
