@@ -1,29 +1,5 @@
 import pandas as pd
 
-import click
-from click_default_group import DefaultGroup
-
-
-@click.group(cls=DefaultGroup, default="create", default_if_no_args=True)
-def cli():
-    pass
-
-
-@cli.command(short_help="Filter data from Socorro Island Eradication Project")
-@click.option("--weekly-data-path", "-d", type=click.Path(), help="Path to the weekly data")
-@click.option(
-    "--monthly-trappers-path",
-    "-t",
-    type=click.Path(),
-    help="Path to the monthly number of trappers",
-)
-@click.option("--output-path", "-o", type=click.Path(), help="Output file path")
-def write_monthly_summary(weekly_data_path: str, monthly_trappers_path: str, output_path: str):
-    effort_data = pd.read_csv(weekly_data_path)
-    monthly_trappers = pd.read_csv(monthly_trappers_path)
-    monthly_data = summarize_effort_captures_and_trappers(monthly_trappers, effort_data)
-    monthly_data.to_csv(output_path, index=False, na_rep="NA")
-
 
 def summarize_effort_captures_and_trappers(monthly_trappers, effort_data):
     monthly_data = sum_monthly_effort_and_captures(effort_data)
