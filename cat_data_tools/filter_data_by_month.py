@@ -11,7 +11,6 @@ def summarize_effort_captures_and_trappers(monthly_trappers, effort_data):
 
 def add_date_column(monthly_data):
     monthly_data.reset_index(inplace=True)
-    monthly_data = monthly_data.rename(columns={"index": "month_and_year"})
     monthly_data["Fecha"] = monthly_data.month_and_year + "-01"
     return monthly_data
 
