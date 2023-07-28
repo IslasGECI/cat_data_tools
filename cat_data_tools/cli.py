@@ -1,5 +1,5 @@
 from cat_data_tools.filter_data_by_month import summarize_effort_captures_and_trappers
-from cat_data_tools.__init__ import __version__
+import cat_data_tools as cdt
 import pandas as pd
 import typer
 
@@ -19,4 +19,4 @@ def write_monthly_summary(
 
 @app.command()
 def version():
-    print(__version__)
+    print(cdt.__version__)

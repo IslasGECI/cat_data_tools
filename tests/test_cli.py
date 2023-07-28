@@ -1,4 +1,4 @@
-from cat_data_tools import app
+from cat_data_tools.cli import app
 from typer.testing import CliRunner
 import os
 
