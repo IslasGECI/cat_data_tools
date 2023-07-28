@@ -8,6 +8,13 @@ runner = CliRunner()
 def test_app():
     result = runner.invoke(
         app,
+        ["version"],
+    )
+    assert "0.1.0" in result.stdout
+    assert result.exit_code == 0
+
+    result = runner.invoke(
+        app,
         ["write-monthly-summary", "--help"],
     )
     assert "XX" not in result.stdout
