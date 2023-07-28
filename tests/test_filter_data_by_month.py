@@ -1,8 +1,15 @@
-from cat_data_tools import sum_monthly_effort_and_captures, summarize_effort_captures_and_trappers
+from cat_data_tools import (
+    sum_monthly_effort_and_captures,
+    summarize_effort_captures_and_trappers,
+    write_monthly_summary,
+)
 import pandas as pd
 import numpy as np
+import subprocess
+
 
 weekly_data_path = "tests/data/weekly_effort_ISO.csv"
+monthly_trappers_path = "tests/data/monthly_trappers.csv"
 
 
 def test_sum_monthly_effort_and_captures():
@@ -20,8 +27,7 @@ def test_sum_monthly_effort_and_captures():
     assert obtained_captures == expected_captures
 
 
-def test_write_monthly_summary():
-    monthly_trappers_path = "tests/data/monthly_trappers.csv"
+def test_summarize_effort_captures_and_trappers():
     monthly_trappers = pd.read_csv(monthly_trappers_path)
     effort_data = pd.read_csv(weekly_data_path)
     obtained_data = summarize_effort_captures_and_trappers(monthly_trappers, effort_data)
@@ -34,3 +40,10 @@ def test_write_monthly_summary():
     obtained_trappers = obtained_data.loc[:, "Tramperos"]
     expected_trappers = pd.Series([15, 2, np.nan, 4, 1, 18, 7])
     pd.testing.assert_series_equal(obtained_trappers, expected_trappers, check_names=False)
+
+
+def test_write_monthly_summary():
+    output_path = "tests/data/monthly_summary.csv"
+    write_monthly_summary(weekly_data_path, monthly_trappers_path, output_path)
+    obtained = subprocess.check_output([f"cat {output_path}"], shell=True)
+    assert ",NA" in str(obtained)
