@@ -45,5 +45,6 @@ def test_summarize_effort_captures_and_trappers():
 def test_write_monthly_summary():
     output_path = "tests/data/monthly_summary.csv"
     write_monthly_summary(weekly_data_path, monthly_trappers_path, output_path)
-    obtained = subprocess.check_output([f"cat {output_path}"], shell=True)
-    assert ",NA" in str(obtained)
+    obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
+    assert ",NA" in obtained
+    assert ",Esfuerzo" not in obtained
