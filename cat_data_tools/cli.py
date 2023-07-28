@@ -1,4 +1,5 @@
 from cat_data_tools.filter_data_by_month import summarize_effort_captures_and_trappers
+from cat_data_tools.filter_data_between_years import filter_data_between_years
 import cat_data_tools as cdt
 import pandas as pd
 import typer
@@ -15,6 +16,18 @@ def write_monthly_summary(
     monthly_trappers = pd.read_csv(monthly_trappers_path)
     monthly_data = summarize_effort_captures_and_trappers(monthly_trappers, effort_data)
     monthly_data.to_csv(output_path, index=False, na_rep="NA")
+
+
+@app.command(help="Write yearly summary from monthly summary")
+def write_yearly_summary(
+    monthly_data_path: str = "",
+    output_path: str = "",
+    initial_year: int = 2014,
+    final_year: int = 2019,
+):
+    dataframe = pd.read_csv(monthly_data_path)
+    filtered_dataframe = filter_data_between_years(dataframe, initial_year, final_year)
+    filtered_dataframe.to_csv(output_path, index=False, na_rep="NA")
 
 
 @app.command()
