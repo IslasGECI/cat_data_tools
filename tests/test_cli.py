@@ -39,7 +39,7 @@ def test_app():
     result = runner.invoke(
         app,
         [
-            "write-yearly-summary",
+            "filter-monthly-summary",
             "--monthly-data-path",
             "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv",
             "--initial-year",

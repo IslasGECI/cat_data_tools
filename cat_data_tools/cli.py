@@ -19,7 +19,7 @@ def write_monthly_summary(
 
 
 @app.command(help="Write yearly summary from monthly summary")
-def write_yearly_summary(
+def filter_monthly_summary(
     monthly_data_path: str = "",
     output_path: str = "",
     initial_year: int = 2014,
