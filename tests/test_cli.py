@@ -35,3 +35,20 @@ def test_app():
     )
     assert result.exit_code == 0
     os.remove(output_path)
+    output_path = "tests/data/yearly_summary.csv"
+    result = runner.invoke(
+        app,
+        [
+            "write-yearly-summary",
+            "--monthly-data-path",
+            "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv",
+            "--initial-year",
+            2015,
+            "--final-year",
+            2018,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    # os.remove(output_path)
