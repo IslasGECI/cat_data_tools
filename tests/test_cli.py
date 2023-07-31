@@ -11,7 +11,7 @@ def test_app():
         app,
         ["version"],
     )
-    assert "0.5.0" in result.stdout
+    assert "0.6.0" in result.stdout
     assert result.exit_code == 0
 
     result = runner.invoke(
