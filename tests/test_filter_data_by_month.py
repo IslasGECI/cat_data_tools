@@ -1,6 +1,6 @@
 from cat_data_tools import (
     sum_monthly_effort_and_captures,
-    summarize_effort_captures_and_trappers,
+    summarize_effort_captures_and_add_trappers,
     write_monthly_summary,
 )
 import pandas as pd
@@ -27,10 +27,10 @@ def test_sum_monthly_effort_and_captures():
     assert obtained_captures == expected_captures
 
 
-def test_summarize_effort_captures_and_trappers():
+def test_summarize_effort_captures_and_add_trappers():
     monthly_trappers = pd.read_csv(monthly_trappers_path)
     effort_data = pd.read_csv(weekly_data_path)
-    obtained_data = summarize_effort_captures_and_trappers(monthly_trappers, effort_data)
+    obtained_data = summarize_effort_captures_and_add_trappers(monthly_trappers, effort_data)
     obtained_columns = obtained_data.columns
     expected_columns = ["Esfuerzo", "Capturas", "Fecha", "Tramperos"]
     assert (obtained_columns == expected_columns).all()

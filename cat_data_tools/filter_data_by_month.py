@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def summarize_effort_captures_and_trappers(monthly_trappers, effort_data):
+def summarize_effort_captures_and_add_trappers(monthly_trappers, effort_data):
     monthly_data = sum_monthly_effort_and_captures(effort_data)
     monthly_data = add_date_column(monthly_data)
     monthly_data["Tramperos"] = monthly_trappers["Tramperos"]
