@@ -18,7 +18,7 @@ def write_monthly_summary(
     monthly_data.to_csv(output_path, index=False, na_rep="NA")
 
 
-@app.command(help="Write yearly summary from monthly summary")
+@app.command(help="Filter monthly summary between years")
 def filter_monthly_summary(
     monthly_data_path: str = "",
     output_path: str = "",
