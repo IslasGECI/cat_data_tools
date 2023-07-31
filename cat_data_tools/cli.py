@@ -1,4 +1,7 @@
-from cat_data_tools.filter_data_by_month import summarize_effort_captures_and_add_trappers
+from cat_data_tools.filter_data_by_month import (
+    summarize_effort_captures_and_add_trappers,
+    summarize_effort_captures,
+)
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 import cat_data_tools as cdt
 import pandas as pd
@@ -6,6 +9,13 @@ import typer
 
 
 app = typer.Typer()
+
+
+@app.command(help="Write monthly summary from weekly summary without trappers")
+def write_monthly_summary_without_trappers(weekly_data_path: str = "", output_path: str = ""):
+    effort_data = pd.read_csv(weekly_data_path)
+    monthly_data = summarize_effort_captures(effort_data)
+    monthly_data.to_csv(output_path, index=False, na_rep="NA")
 
 
 @app.command(help="Write monthly summary from weekly summary")
