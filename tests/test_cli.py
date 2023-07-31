@@ -24,6 +24,18 @@ def test_app():
     result = runner.invoke(
         app,
         [
+            "write-monthly-summary-without-trappers",
+            "--weekly-data-path",
+            "tests/data/weekly_effort_ISO.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    os.remove(output_path)
+    result = runner.invoke(
+        app,
+        [
             "write-monthly-summary",
             "--weekly-data-path",
             "tests/data/weekly_effort_ISO.csv",
