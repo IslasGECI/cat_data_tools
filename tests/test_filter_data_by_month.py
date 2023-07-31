@@ -1,5 +1,6 @@
 from cat_data_tools import (
     sum_monthly_effort_and_captures,
+    summarize_effort_captures,
     summarize_effort_captures_and_add_trappers,
     write_monthly_summary,
 )
@@ -25,6 +26,14 @@ def test_sum_monthly_effort_and_captures():
     obtained_captures = filtered_data.loc["2023-03", "Capturas"]
     expected_captures = 2
     assert obtained_captures == expected_captures
+
+
+def test_summarize_effort_captures():
+    effort_data = pd.read_csv(weekly_data_path)
+    obtained_data = summarize_effort_captures(effort_data)
+    obtained_columns = obtained_data.columns
+    expected_columns = ["Esfuerzo", "Capturas", "Fecha"]
+    assert (obtained_columns == expected_columns).all()
 
 
 def test_summarize_effort_captures_and_add_trappers():
