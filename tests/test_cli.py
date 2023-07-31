@@ -57,4 +57,5 @@ def test_app():
         ["filter-monthly-summary", "--help"],
     )
     assert "XX" not in result.stdout
+    assert "XXXX" not in result.stdout
     assert result.exit_code == 0
