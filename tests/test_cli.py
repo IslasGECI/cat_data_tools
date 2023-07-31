@@ -58,4 +58,6 @@ def test_app():
     )
     assert "XX" not in result.stdout
     assert "XXXX" not in result.stdout
+    assert "[default: 2014]" in result.stdout
+    assert "[default: 2019]" in result.stdout
     assert result.exit_code == 0
