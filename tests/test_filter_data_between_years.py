@@ -2,9 +2,12 @@ from cat_data_tools import (
     filter_data_after_year,
     filter_data_before_year,
     filter_data_between_years,
+    filter_monthly_summary,
 )
 
+import os
 import pandas as pd
+import subprocess
 
 
 monthly_data = pd.read_csv("tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv")
@@ -45,3 +48,13 @@ def test_filter_data_between_years():
     expected = pd.read_csv("tests/data/filtered_data_between_years_2016_and_2260.csv")
     expected_length = len(expected)
     assert obtained_length == expected_length
+
+
+def test_filter_monthly_summary():
+    monthly_data_path = "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv"
+    output_path = "tests/data/filtered_monthly_summary.csv"
+    filter_monthly_summary(monthly_data_path, output_path, initial_year=2018)
+    obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
+    assert ",NA" in obtained
+    assert ",Esfuerzo" not in obtained
+    os.remove(output_path)
