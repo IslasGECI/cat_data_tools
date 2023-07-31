@@ -20,6 +20,12 @@ def test_app():
     )
     assert "XX" not in result.stdout
     assert result.exit_code == 0
+    result = runner.invoke(
+        app,
+        ["write-monthly-summary-without-trappers", "--help"],
+    )
+    assert "XX" not in result.stdout
+    assert result.exit_code == 0
     output_path = "tests/data/monthly_summary.csv"
     result = runner.invoke(
         app,
