@@ -15,7 +15,7 @@ app = typer.Typer()
 def write_monthly_summary_without_trappers(weekly_data_path: str = "", output_path: str = ""):
     effort_data = pd.read_csv(weekly_data_path)
     monthly_data = summarize_effort_captures(effort_data)
-    monthly_data.to_csv(output_path, index=False, na_rep="NA")
+    monthly_data.to_csv(output_path, index=False)
 
 
 @app.command(help="Write monthly summary from weekly summary")

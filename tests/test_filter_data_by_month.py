@@ -3,6 +3,7 @@ from cat_data_tools import (
     summarize_effort_captures,
     summarize_effort_captures_and_add_trappers,
     write_monthly_summary,
+    write_monthly_summary_without_trappers,
 )
 import pandas as pd
 import numpy as np
@@ -49,6 +50,14 @@ def test_summarize_effort_captures_and_add_trappers():
     obtained_trappers = obtained_data.loc[:, "Tramperos"]
     expected_trappers = pd.Series([15, 2, np.nan, 4, 1, 18, 7])
     pd.testing.assert_series_equal(obtained_trappers, expected_trappers, check_names=False)
+
+
+def test_write_monthly_summary_without_trappers():
+    output_path = "tests/data/monthly_summary.csv"
+    write_monthly_summary_without_trappers(weekly_data_path, output_path)
+    obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
+    assert ",Esfuerzo" not in obtained
+    os.remove(output_path)
 
 
 def test_write_monthly_summary():
