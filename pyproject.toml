@@ -15,3 +15,6 @@ requires = [
     "typer"
 ]
 requires-python=">=3.9"
+
+[tool.flit.scripts]
+cat-data-tools = "cat_data_tools.cli:app"
