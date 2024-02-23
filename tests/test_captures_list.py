@@ -10,14 +10,6 @@ def test_select_captures_from_daily_status():
 
 
 def tests_join_trap_info_with_captures():
-
-    captures = pd.DataFrame(
-        {
-            "ID_de_trampa": ["TC-01-2156-MV", "TC-02-2156-MO", "TC-01-2156-MV"],
-            "Estado_trampa": ["X", "X", "X"],
-            "Fecha": ["10/Sep/2023", "10/Sep/2023", "19/Sep/2023"],
-        }
-    )
     traps_info = pd.DataFrame(
         {
             "ID_de_trampa": ["TC-01-2156-MV", "TC-02-2156-MO", "TC-01-2157-NR"],
@@ -29,3 +21,12 @@ def tests_join_trap_info_with_captures():
     obtained = join_trap_info_with_captures(captures, traps_info)
     expected_len = 3
     assert len(obtained) == expected_len
+
+
+captures = pd.DataFrame(
+    {
+        "ID_de_trampa": ["TC-01-2156-MV", "TC-02-2156-MO", "TC-01-2156-MV"],
+        "Estado_trampa": ["X", "X", "X"],
+        "Fecha": ["10/Sep/2023", "10/Sep/2023", "19/Sep/2023"],
+    }
+)
