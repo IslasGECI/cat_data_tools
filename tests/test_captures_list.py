@@ -15,7 +15,7 @@ def tests_join_trap_info_with_captures():
     assert_obtained_has_coordinates_columns(obtained)
 
 
-def assert_obatined_has_all_captures(obtained):
+def assert_obatined_has_all_captures(obtained: pd.DataFrame) -> None:
     expected_len = 3
     assert len(obtained) == expected_len
 
@@ -26,6 +26,13 @@ def assert_obtained_has_coordinates_columns(obtained: pd.DataFrame) -> None:
         expected_column in obtained.columns.values for expected_column in expected_columns
     ]
     assert all(are_expected_columns_in_obtained)
+    assert "Estado_trampa" not in obtained.columns
+    crash_and_print(obtained)
+
+
+def crash_and_print(obtained):
+    print(obtained)
+    assert False
 
 
 traps_info = pd.DataFrame(
