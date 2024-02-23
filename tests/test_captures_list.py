@@ -15,7 +15,7 @@ def tests_join_trap_info_with_captures():
     assert len(obtained) == expected_len
 
     expected_columns = ["latitude", "longitude"]
-    assert (expected_columns in obtained.columns).all()
+    assert all([expected_column in obtained.columns.values for expected_column in expected_columns])
 
 
 traps_info = pd.DataFrame(
