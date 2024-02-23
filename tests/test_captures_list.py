@@ -20,7 +20,7 @@ def assert_obatined_has_all_captures(obtained):
     assert len(obtained) == expected_len
 
 
-def assert_obtained_has_coordinates_columns(obtained):
+def assert_obtained_has_coordinates_columns(obtained: pd.DataFrame) -> None:
     expected_columns = ["latitude", "longitude"]
     are_expected_columns_in_obtained = [
         expected_column in obtained.columns.values for expected_column in expected_columns
