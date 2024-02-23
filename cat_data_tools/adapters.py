@@ -21,4 +21,5 @@ class Adapatador_from_empty_path:
         self.lista_trampas = self.get_list_traps
 
     def get_dataframe(self):
-        return "from_empty_path"
+        default_path = "default_traps_list"
+        return pd.read_pickle(default_path)
