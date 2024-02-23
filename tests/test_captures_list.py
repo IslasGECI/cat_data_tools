@@ -1,0 +1,6 @@
+import pandas as pd
+
+
+def test_select_captures_from_daily_status():
+    daily_status = pd.read_csv("tests/data/trap_daily_status.csv")
+    obtained = select_captures_from_daily_status(daily_status)
