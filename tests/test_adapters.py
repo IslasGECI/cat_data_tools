@@ -11,4 +11,4 @@ def test_adapter_path_to_dataframe():
     path = ""
     adapter = Adapter_for_path_to_dataframe(path)
     obtained = adapter.get_dataframe()
-    assert obtained == "from_empty_path"
+    assert isinstance(obtained, pd.DataFrame)
