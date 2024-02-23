@@ -26,7 +26,7 @@ def assert_obtained_has_coordinates_columns(obtained: pd.DataFrame) -> None:
         expected_column in obtained.columns.values for expected_column in expected_columns
     ]
     assert all(are_expected_columns_in_obtained)
-    assert "Estado_trampa" not in obtained.columns
+    assert "Estado_trampa" not in obtained.columns.values
     crash_and_print(obtained)
 
 
