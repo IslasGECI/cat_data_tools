@@ -13,9 +13,15 @@ def tests_join_trap_info_with_captures():
     obtained = join_trap_info_with_captures(captures, traps_info)
     expected_len = 3
     assert len(obtained) == expected_len
+    assert_the_joined_dataframe_has_coordinates_columns(obtained)
 
+
+def assert_the_joined_dataframe_has_coordinates_columns(obtained):
     expected_columns = ["latitude", "longitude"]
-    assert all([expected_column in obtained.columns.values for expected_column in expected_columns])
+    are_expected_columns_in_obtained = [
+        expected_column in obtained.columns.values for expected_column in expected_columns
+    ]
+    assert all(are_expected_columns_in_obtained)
 
 
 traps_info = pd.DataFrame(
