@@ -12,7 +12,7 @@ class Adapter_from_csv_path:
         self.path = path
 
     def get_dataframe(self):
-        return "from_csv"
+        return pd.read_csv(self.path)
 
 
 class Adapatador_from_empty_path:
