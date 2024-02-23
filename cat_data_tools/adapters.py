@@ -2,7 +2,9 @@ import pandas as pd
 
 
 def Adapter_for_path_to_dataframe(path):
-    return Adapter_from_csv_path(path)
+    file_extension = path.split(".")[-1]
+    choices = {"csv": Adapter_from_csv_path(path), "": Adapatador_from_empty_path()}
+    return choices[file_extension]
 
 
 class Adapter_from_csv_path:
@@ -19,4 +21,4 @@ class Adapatador_from_empty_path:
         self.lista_trampas = self.get_list_traps
 
     def get_dataframe(self):
-        return self.lista_trampas
+        return "from_empty_path"

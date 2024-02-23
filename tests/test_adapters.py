@@ -7,6 +7,7 @@ def test_adapter_path_to_dataframe():
     adapter = Adapter_for_path_to_dataframe(path)
     obtained = adapter.get_dataframe()
     assert obtained == "from_csv"
+
     path = ""
     adapter = Adapter_for_path_to_dataframe(path)
     obtained = adapter.get_dataframe()
