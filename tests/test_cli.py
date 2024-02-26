@@ -14,12 +14,9 @@ def test_app():
     assert "0.6.1" in result.stdout
     assert result.exit_code == 0
 
-    result = runner.invoke(
-        app,
-        ["write-monthly-summary", "--help"],
-    )
-    assert "XX" not in result.stdout
-    assert result.exit_code == 0
+    command = "write-monthly-summary"
+    assert_cli_help(command)
+
     result = runner.invoke(
         app,
         ["write-monthly-summary-without-trappers", "--help"],
@@ -79,4 +76,13 @@ def test_app():
     assert "XXXX" not in result.stdout
     assert "[default: 2014]" in result.stdout
     assert "[default: 2019]" in result.stdout
+    assert result.exit_code == 0
+
+
+def assert_cli_help(command):
+    result = runner.invoke(
+        app,
+        [command, "--help"],
+    )
+    assert "XX" not in result.stdout
     assert result.exit_code == 0
