@@ -6,7 +6,7 @@ import os
 runner = CliRunner()
 
 
-def test_app():
+def test_app_write_monthly_summary():
     result = runner.invoke(
         app,
         ["version"],
@@ -17,6 +17,24 @@ def test_app():
     command = "write-monthly-summary"
     assert_cli_help(command)
 
+    output_path = "tests/data/monthly_summary.csv"
+    result = runner.invoke(
+        app,
+        [
+            "write-monthly-summary",
+            "--weekly-data-path",
+            "tests/data/weekly_effort_ISO.csv",
+            "--monthly-trappers-path",
+            "tests/data/monthly_trappers.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    os.remove(output_path)
+
+
+def test_app_write_monthly_summary_without_trappers():
     result = runner.invoke(
         app,
         ["write-monthly-summary-without-trappers", "--help"],
@@ -37,20 +55,7 @@ def test_app():
     )
     assert result.exit_code == 0
     os.remove(output_path)
-    result = runner.invoke(
-        app,
-        [
-            "write-monthly-summary",
-            "--weekly-data-path",
-            "tests/data/weekly_effort_ISO.csv",
-            "--monthly-trappers-path",
-            "tests/data/monthly_trappers.csv",
-            "--output-path",
-            output_path,
-        ],
-    )
-    assert result.exit_code == 0
-    os.remove(output_path)
+
     output_path = "tests/data/yearly_summary.csv"
     result = runner.invoke(
         app,
