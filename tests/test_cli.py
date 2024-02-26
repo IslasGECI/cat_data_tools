@@ -55,16 +55,11 @@ def test_app_write_monthly_summary_without_trappers():
 
 
 def test_app_filter_monthly_summary():
-
-    result = runner.invoke(
-        app,
-        ["filter-monthly-summary", "--help"],
-    )
-    assert "XX" not in result.stdout
+    command = "filter-monthly-summary"
+    result = assert_cli_help(command)
     assert "XXXX" not in result.stdout
     assert "[default: 2014]" in result.stdout
     assert "[default: 2019]" in result.stdout
-    assert result.exit_code == 0
 
     output_path = "tests/data/yearly_summary.csv"
     result = runner.invoke(
