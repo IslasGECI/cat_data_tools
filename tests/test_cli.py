@@ -35,13 +35,10 @@ def test_app_write_monthly_summary():
 
 
 def test_app_write_monthly_summary_without_trappers():
-    result = runner.invoke(
-        app,
-        ["write-monthly-summary-without-trappers", "--help"],
-    )
-    assert "XX" not in result.stdout
+    command = "write-monthly-summary-without-trappers"
+    result = assert_cli_help(command)
     assert "XXXX" not in result.stdout
-    assert result.exit_code == 0
+
     output_path = "tests/data/monthly_summary.csv"
     result = runner.invoke(
         app,
@@ -55,6 +52,19 @@ def test_app_write_monthly_summary_without_trappers():
     )
     assert result.exit_code == 0
     os.remove(output_path)
+
+
+def test_app_filter_monthly_summary():
+
+    result = runner.invoke(
+        app,
+        ["filter-monthly-summary", "--help"],
+    )
+    assert "XX" not in result.stdout
+    assert "XXXX" not in result.stdout
+    assert "[default: 2014]" in result.stdout
+    assert "[default: 2019]" in result.stdout
+    assert result.exit_code == 0
 
     output_path = "tests/data/yearly_summary.csv"
     result = runner.invoke(
@@ -73,15 +83,6 @@ def test_app_write_monthly_summary_without_trappers():
     )
     assert result.exit_code == 0
     os.remove(output_path)
-    result = runner.invoke(
-        app,
-        ["filter-monthly-summary", "--help"],
-    )
-    assert "XX" not in result.stdout
-    assert "XXXX" not in result.stdout
-    assert "[default: 2014]" in result.stdout
-    assert "[default: 2019]" in result.stdout
-    assert result.exit_code == 0
 
 
 def assert_cli_help(command):
@@ -91,3 +92,4 @@ def assert_cli_help(command):
     )
     assert "XX" not in result.stdout
     assert result.exit_code == 0
+    return result
