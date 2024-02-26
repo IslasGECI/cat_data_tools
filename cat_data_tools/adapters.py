@@ -17,8 +17,7 @@ class Adapter_from_csv_path:
 
 class Adapatador_from_empty_path:
     def __init__(self):
-        self.get_list_traps = None
-        self.lista_trampas = self.get_list_traps
+        pass
 
     def get_dataframe(self):
         default_path = "default_traps_list"
