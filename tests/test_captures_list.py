@@ -14,6 +14,10 @@ def tests_join_trap_info_with_captures():
     assert_obatined_has_all_captures(obtained)
     assert_obtained_has_coordinates_columns(obtained)
 
+    obtained = join_trap_info_with_captures(captures_without_X, traps_info)
+    expected_len = 2
+    assert len(obtained) == expected_len
+
 
 def assert_obatined_has_all_captures(obtained: pd.DataFrame) -> None:
     expected_len = 3
@@ -42,6 +46,13 @@ traps_info = pd.DataFrame(
     }
 )
 
+captures_without_X = pd.DataFrame(
+    {
+        "ID_de_trampa": ["TC-01-2156-MV", "TC-02-2156-MO", "TC-01-2156-MV"],
+        "Estado_trampa": ["A", "X", "X"],
+        "Fecha": ["10/Sep/2023", "10/Sep/2023", "19/Sep/2023"],
+    }
+)
 captures = pd.DataFrame(
     {
         "ID_de_trampa": ["TC-01-2156-MV", "TC-02-2156-MO", "TC-01-2156-MV"],
