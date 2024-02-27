@@ -35,7 +35,7 @@ def test_app_write_monthly_summary():
         app,
         ["version"],
     )
-    assert "0.6.1" in result.stdout
+    assert "0.7.0" in result.stdout
     assert result.exit_code == 0
 
     command = "write-monthly-summary"
