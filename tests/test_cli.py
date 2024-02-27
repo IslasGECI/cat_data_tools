@@ -1,6 +1,7 @@
 from cat_data_tools.cli import app
 from typer.testing import CliRunner
 import os
+import pandas as pd
 
 
 runner = CliRunner()
@@ -28,6 +29,10 @@ def test_app_join_captures_with_traps_info():
     )
     assert result.exit_code == 0
     assert os.path.exists(output_path)
+    obtained = pd.read_csv(output_path)
+    expected_n_columns = 5
+    obtained_n_columns = len(obtained.columns)
+    assert obtained_n_columns == expected_n_columns
 
 
 def test_app_write_monthly_summary():
