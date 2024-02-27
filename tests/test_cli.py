@@ -9,7 +9,7 @@ runner = CliRunner()
 def test_app_join_captures_with_traps_info():
     command = "join-captures-with-traps-info"
     assert_cli_help(command)
-    output_path = "test/data/joined_traps_with_captures.csv"
+    output_path = "tests/data/joined_traps_with_captures.csv"
 
     if os.path.exists(output_path):
         os.remove(output_path)

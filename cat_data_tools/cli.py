@@ -15,8 +15,10 @@ app = typer.Typer()
 def join_captures_with_traps_info(
     trap_daily_status_path: str = "", traps_info_path: str = "", output_path: str = ""
 ):
-    daily_status_df = cdt.Adapter_for_path_to_dataframe(trap_daily_status_path)
-    print(daily_status_df)
+    daily_status_df = cdt.Adapter_for_path_to_dataframe(trap_daily_status_path).get_dataframe()
+    traps_info_df = cdt.Adapter_for_path_to_dataframe(traps_info_path).get_dataframe()
+    joined_df = cdt.join_trap_info_with_captures(daily_status_df, traps_info_df)
+    joined_df.to_csv(output_path, index=False)
 
 
 @app.command(help="Write monthly summary from weekly summary without trappers")
