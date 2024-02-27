@@ -10,6 +10,21 @@ def test_app_join_captures_with_traps_info():
     command = "join-captures-with-traps-info"
     assert_cli_help(command)
 
+    output_path = "test/data/joined_traps_with_captures.csv"
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--trap-daily-status-path",
+            "tests/data/trap_daily_status.csv",
+            "--traps-info-path",
+            "tests/data/traps_list.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+
 
 def test_app_write_monthly_summary():
     result = runner.invoke(
