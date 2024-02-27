@@ -9,8 +9,11 @@ runner = CliRunner()
 def test_app_join_captures_with_traps_info():
     command = "join-captures-with-traps-info"
     assert_cli_help(command)
-
     output_path = "test/data/joined_traps_with_captures.csv"
+
+    if os.path.exists(output_path):
+        os.remove(output_path)
+
     result = runner.invoke(
         app,
         [
@@ -24,6 +27,7 @@ def test_app_join_captures_with_traps_info():
         ],
     )
     assert result.exit_code == 0
+    assert os.path.exists(output_path)
 
 
 def test_app_write_monthly_summary():
