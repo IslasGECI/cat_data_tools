@@ -6,6 +6,11 @@ import os
 runner = CliRunner()
 
 
+def test_app_join_captures_with_traps_info():
+    command = "join-captures-with-traps-info"
+    assert_cli_help(command)
+
+
 def test_app_write_monthly_summary():
     result = runner.invoke(
         app,
