@@ -10,3 +10,5 @@ RUN pip install --upgrade pip && pip install \
     pytest \
     pytest-cov \
     typer
+
+RUN make install
