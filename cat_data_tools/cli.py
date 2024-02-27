@@ -11,6 +11,11 @@ import typer
 app = typer.Typer()
 
 
+@app.command()
+def join_captures_with_traps_info():
+    pass
+
+
 @app.command(help="Write monthly summary from weekly summary without trappers")
 def write_monthly_summary_without_trappers(weekly_data_path: str = "", output_path: str = ""):
     effort_data = pd.read_csv(weekly_data_path)
