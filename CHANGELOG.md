@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.7.0] - 2024-02-27
+
+### Added
+- Add cli command `join-captures-with-traps-info`
+
 ## [0.6.1] - 2023-09-27
 
 ### Added
