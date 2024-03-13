@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.8.0] - 2024-03-13
+
+### Added
+- Add cli command `join-traps-ids-and-daily-status`
+
 ## [0.7.1] - 2024-02-27
 
 ### Changed
