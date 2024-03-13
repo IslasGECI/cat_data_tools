@@ -7,6 +7,11 @@ import pandas as pd
 runner = CliRunner()
 
 
+def test_app_join_traps_ids_and_daily_status():
+    command = "join-traps-ids-and-daily-status"
+    assert_cli_help(command)
+
+
 def test_app_join_captures_with_traps_info():
     command = "join-captures-with-traps-info"
     assert_cli_help(command)
