@@ -18,7 +18,7 @@ def join_traps_ids_and_daily_status(
     trap_daily_status = pd.read_csv(trap_daily_status_path)
     traps_ids = pd.read_csv(traps_ids_path)
     joined_df = cdt.join_trap_ids_and_daily_status(trap_daily_status, traps_ids)
-    joined_df.to_csv(output_path)
+    joined_df.to_csv(output_path, index=False)
 
 
 @app.command()
