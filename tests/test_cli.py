@@ -28,6 +28,8 @@ def test_app_join_traps_ids_and_daily_status():
         ],
     )
     assert result.exit_code == 0
+    obtained = pd.read_csv(output_path)
+    assert len(obtained.columns) == 6
 
 
 def test_app_join_captures_with_traps_info():
