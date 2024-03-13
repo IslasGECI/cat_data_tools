@@ -10,6 +10,24 @@ runner = CliRunner()
 def test_app_join_traps_ids_and_daily_status():
     command = "join-traps-ids-and-daily-status"
     assert_cli_help(command)
+    output_path = "tests/data/traps_and_daily_status_for_looker.csv"
+
+    if os.path.exists(output_path):
+        os.remove(output_path)
+
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--trap-daily-status-path",
+            "tests/data/daily_status_trap_guadalupe.csv",
+            "--traps-ids-path",
+            "tests/data/traps_ids_latlon.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
 
 
 def test_app_join_captures_with_traps_info():
