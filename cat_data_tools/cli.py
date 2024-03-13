@@ -12,6 +12,11 @@ app = typer.Typer()
 
 
 @app.command()
+def join_traps_ids_and_daily_status():
+    pass
+
+
+@app.command()
 def join_captures_with_traps_info(
     trap_daily_status_path: str = "", traps_info_path: str = "", output_path: str = ""
 ):
