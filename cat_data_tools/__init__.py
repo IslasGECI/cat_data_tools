@@ -1,6 +1,6 @@
 """A template Python module"""
 
-__version__ = "0.7.1"
+__version__ = "0.8.0"
 from .adapters import *  # noqa
 from .captures_list import *  # noqa
 from .cli import *  # noqa
