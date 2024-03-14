@@ -6,8 +6,6 @@ on:
 jobs:
   actions:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
     steps:
     - name: Copia repositorio
       uses: actions/checkout@main
