@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.9.0] - 2025-05-01
+
+### Added
+- Add cli command `update-status-traps`
+
 ## [0.8.0] - 2024-03-13
 
 ### Added
