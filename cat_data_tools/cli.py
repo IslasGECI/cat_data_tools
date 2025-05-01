@@ -3,6 +3,7 @@ from cat_data_tools.filter_data_by_month import (
     summarize_effort_captures,
 )
 from cat_data_tools.filter_data_between_years import filter_data_between_years
+from cat_data_tools.update_status_traps import _update_status_traps
 import cat_data_tools as cdt
 import pandas as pd
 import typer
@@ -61,8 +62,10 @@ def filter_monthly_summary(
 
 
 @app.command()
-def update_status_traps():
-    pass
+def update_status_traps(data_path: str = typer.Option(), output_path: str = typer.Option()):
+    traps_info_df = pd.read_csv(data_path)
+    updated_traps_info = _update_status_traps(traps_info_df)
+    updated_traps_info.to_csv(output_path, index=False, na_rep="NA")
 
 
 @app.command()
