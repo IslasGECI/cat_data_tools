@@ -115,7 +115,7 @@ def test_update_status_traps():
     result = assert_cli_help(command)
 
     output_path = "tests/data/traps_info_updated.csv"
-    gtt.if_exists_remove(output_path)
+    gtt.if_exist_remove(output_path)
     result = runner.invoke(
         app,
         [
@@ -127,7 +127,7 @@ def test_update_status_traps():
         ],
     )
     assert result.exit_code == 0
-    assert gtt.file_exists(output_path)
+    assert gtt.assert_exist(output_path)
 
 
 def test_app_filter_monthly_summary():
