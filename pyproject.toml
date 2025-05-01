@@ -18,3 +18,7 @@ requires-python=">=3.9"
 
 [tool.flit.scripts]
 cat-data-tools = "cat_data_tools.cli:app"
+
+[tool.mutmut]
+paths_to_mutate = [ "cat_data_tools/" ]
+tests_dir = [ "tests/" ]
