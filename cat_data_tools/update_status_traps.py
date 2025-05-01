@@ -5,5 +5,4 @@ def update_status_traps(traps_info_df):
         not (duplicated_id and duplicated_date)
         for duplicated_id, duplicated_date in zip(is_id_duplicated, is_same_date)
     ]
-    print(should_keep)
     return traps_info_df[should_keep].reset_index(drop=True)
