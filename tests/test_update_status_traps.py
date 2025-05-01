@@ -18,6 +18,7 @@ def test_update_status_traps():
     assert (
         obtained.shape[0] == expected_number_of_rows
     ), f"Expected {expected_number_of_rows} rows, but got {obtained.shape[0]} rows"
+    assert obtained.iloc[1]["Fecha"] == "2025-02-02"
 
     obtained = _update_status_traps(traps_info_df)
     expected_number_of_rows = 4

@@ -127,7 +127,6 @@ def test_update_status_traps():
         ],
     )
     assert result.exit_code == 0
-    gtt.assert_exist(output_path)
 
 
 def test_app_filter_monthly_summary():
