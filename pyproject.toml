@@ -12,7 +12,7 @@ module = "cat_data_tools"
 requires = [
     "numpy",
     "pandas",
-    "typer"
+    "typer[all]"
 ]
 requires-python=">=3.9"
 
