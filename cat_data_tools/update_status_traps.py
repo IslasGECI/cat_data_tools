@@ -1,4 +1,9 @@
 def update_status_traps(traps_info_df):
-    return traps_info_df.drop_duplicates(subset=["Tipo", "ID", "Orden"], keep="first").reset_index(
-        drop=True
-    )
+    is_id_duplicated = traps_info_df.duplicated(subset=["Tipo", "ID", "Orden"], keep=False)
+    is_same_date = traps_info_df["Fecha"].duplicated(keep=False)
+    should_keep = [
+        not (duplicated_id and duplicated_date)
+        for duplicated_id, duplicated_date in zip(is_id_duplicated, is_same_date)
+    ]
+    print(should_keep)
+    return traps_info_df[should_keep].reset_index(drop=True)
