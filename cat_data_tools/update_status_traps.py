@@ -1,4 +1,4 @@
-def update_status_traps(traps_info_df):
+def _update_status_traps(traps_info_df):
     is_id_duplicated = traps_info_df.duplicated(subset=["Tipo", "ID", "Orden"], keep=False)
     is_same_date = traps_info_df["Fecha"].duplicated(keep=False)
     should_keep = [

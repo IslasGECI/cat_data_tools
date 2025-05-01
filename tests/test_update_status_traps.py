@@ -1,4 +1,4 @@
-from cat_data_tools.update_status_traps import update_status_traps
+from cat_data_tools.update_status_traps import _update_status_traps
 
 import pandas as pd
 
@@ -13,13 +13,13 @@ def test_update_status_traps():
         }
     )
     traps_info_df_cutted = traps_info_df.iloc[0:4]
-    obtained = update_status_traps(traps_info_df_cutted)
+    obtained = _update_status_traps(traps_info_df_cutted)
     expected_number_of_rows = 3
     assert (
         obtained.shape[0] == expected_number_of_rows
     ), f"Expected {expected_number_of_rows} rows, but got {obtained.shape[0]} rows"
 
-    obtained = update_status_traps(traps_info_df)
+    obtained = _update_status_traps(traps_info_df)
     expected_number_of_rows = 4
     assert (
         obtained.shape[0] == expected_number_of_rows
