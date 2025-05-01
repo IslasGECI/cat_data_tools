@@ -109,6 +109,11 @@ def test_app_write_monthly_summary_without_trappers():
     os.remove(output_path)
 
 
+def test_update_status_traps():
+    command = "update-status-traps"
+    result = assert_cli_help(command)
+
+
 def test_app_filter_monthly_summary():
     command = "filter-monthly-summary"
     result = assert_cli_help(command)
