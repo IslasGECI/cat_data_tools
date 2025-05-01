@@ -1,4 +1,5 @@
 from cat_data_tools.cli import app
+import geci_test_tools as gtt
 from typer.testing import CliRunner
 import os
 import pandas as pd
@@ -112,6 +113,21 @@ def test_app_write_monthly_summary_without_trappers():
 def test_update_status_traps():
     command = "update-status-traps"
     result = assert_cli_help(command)
+
+    output_path = "tests/data/traps_info_updated.csv"
+    gtt.if_exists_remove(output_path)
+    result = runner.invoke(
+        app,
+        [
+            "update-status-traps",
+            "--data-path",
+            "tests/data/traps_info_for_tests.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    assert gtt.file_exists(output_path)
 
 
 def test_app_filter_monthly_summary():
