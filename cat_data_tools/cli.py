@@ -61,5 +61,10 @@ def filter_monthly_summary(
 
 
 @app.command()
+def update_status_traps():
+    pass
+
+
+@app.command()
 def version():
     print(cdt.__version__)
