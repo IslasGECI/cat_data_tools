@@ -20,9 +20,7 @@ def test_update_status_traps():
         }
     )
     traps_info_df_cutted = traps_info_df.iloc[0:4]
-    print(traps_info_df_cutted)
     obtained = _update_status_traps(traps_info_df_cutted)
-    print(obtained)
     expected_number_of_rows = 3
     assert (
         obtained.shape[0] == expected_number_of_rows
@@ -30,7 +28,6 @@ def test_update_status_traps():
     assert obtained.iloc[0]["Fecha"] == "2025-02-02"
 
     obtained = _update_status_traps(traps_info_df)
-    print(obtained)
     expected_number_of_rows = 5
     assert (
         obtained.shape[0] == expected_number_of_rows
