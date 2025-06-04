@@ -10,4 +10,13 @@ def add_lat_lon_to_active_traps_of_the_week(active_traps, traps_positions_with_l
     joined = active_traps.join(
         traps_positions_with_lat_lon.set_index(["ID", "Linea"]), on=["ID_de_trampa", "line"]
     )
-    return joined
+    columns = [
+        "date",
+        "Tipo_de_trampa",
+        "ID_de_trampa",
+        "Orden",
+        "line",
+        "latitude",
+        "longitude",
+    ]
+    return joined[columns]
