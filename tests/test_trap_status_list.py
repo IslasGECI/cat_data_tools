@@ -20,3 +20,13 @@ def tests_add_lat_lon_to_active_traps_of_the_week():
     obtained = add_lat_lon_to_active_traps_of_the_week(active_traps, traps_positions_with_lat_lon)
     expected_rows = 2
     assert len(obtained) == expected_rows
+    expected_columns = [
+        "date",
+        "Tipo_de_trampa",
+        "ID_de_trampa",
+        "Orden",
+        "line",
+        "latitude",
+        "longitude",
+    ]
+    assert set(obtained.columns) == set(expected_columns)
