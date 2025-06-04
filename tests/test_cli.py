@@ -8,6 +8,29 @@ import pandas as pd
 runner = CliRunner()
 
 
+def test_app_join_traps_positions_and_active_traps_by_id_and_line():
+    command = "join-traps-positions-and-active-traps-by-id-and-line"
+    assert_cli_help(command)
+    output_path = "tests/data/traps_check_this_week.csv"
+
+    gtt.if_exist_remove(output_path)
+
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--active-traps-path",
+            "tests/data/active_traps_splitted.csv",
+            "--traps-positions-path",
+            "tests/data/traps_positions_with_latlon.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+
+
 def test_app_join_traps_ids_and_daily_status():
     command = "join-traps-ids-and-daily-status"
     assert_cli_help(command)
