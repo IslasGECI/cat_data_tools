@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.10.0] - 2025-06-04
+### Added
+- Add cli command `join-traps-positions-and-active-traps-by-id-and-line`
+
 ## [0.9.2] - 2025-05-08
 
 ### Fixed
