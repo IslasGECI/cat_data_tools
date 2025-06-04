@@ -13,6 +13,16 @@ app = typer.Typer()
 
 
 @app.command()
+def join_traps_positions_and_active_traps_by_id_and_line(
+    active_traps_path: str = "", traps_positions_path: str = "", output_path: str = ""
+):
+    active_traps = pd.read_csv(active_traps_path)
+    postions_with_lat_lon = pd.read_csv(traps_positions_path)
+    joined_df = cdt.add_lat_lon_to_active_traps_of_the_week(active_traps, postions_with_lat_lon)
+    joined_df.to_csv(output_path, index=False)
+
+
+@app.command()
 def join_traps_ids_and_daily_status(
     trap_daily_status_path: str = "", traps_ids_path: str = "", output_path: str = ""
 ):
