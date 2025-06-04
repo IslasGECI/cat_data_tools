@@ -4,3 +4,7 @@ def join_trap_ids_and_daily_status(trap_daily_status, trap_ids):
         trap_ids.set_index("ID"), on="ID_de_trampa"
     )
     return joined_dataframe
+
+
+def add_lat_lon_to_active_traps_of_the_week(active_traps, traps_positions_with_lat_lon):
+    pass
