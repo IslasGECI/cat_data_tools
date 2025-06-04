@@ -29,6 +29,7 @@ def test_app_join_traps_positions_and_active_traps_by_id_and_line():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
+    os.remove(output_path)
 
 
 def test_app_join_traps_ids_and_daily_status():
@@ -90,7 +91,7 @@ def test_app_write_monthly_summary():
         app,
         ["version"],
     )
-    assert "0.9.2" in result.stdout
+    assert "0.10.0" in result.stdout
     assert result.exit_code == 0
 
     command = "write-monthly-summary"
