@@ -179,6 +179,24 @@ def test_app_filter_monthly_summary():
     assert result.exit_code == 0
     os.remove(output_path)
 
+    output_path = "tests/data/filtered_yearly_summary.csv"
+    result = runner.invoke(
+        app,
+        [
+            "filter-monthly-summary",
+            "--monthly-data-path",
+            "tests/data/time_series_with_column_date.csv",
+            "--initial-year",
+            2014,
+            "--final-year",
+            2017,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    os.remove(output_path)
+
 
 def assert_cli_help(command):
     result = runner.invoke(
