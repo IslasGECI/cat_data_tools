@@ -67,6 +67,7 @@ def filter_monthly_summary(
     final_year: int = 2019,
 ):
     dataframe = pd.read_csv(monthly_data_path)
+    dataframe.rename(columns={"Date": "Fecha"}, inplace=True)
     filtered_dataframe = filter_data_between_years(dataframe, initial_year, final_year)
     filtered_dataframe.to_csv(output_path, index=False, na_rep="NA")
 
