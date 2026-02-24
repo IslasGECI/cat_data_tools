@@ -9,3 +9,5 @@ def tests_build_trap_daily_status():
     assert isinstance(obtained, pd.DataFrame)
     expected_days_for_trap_001 = 14
     assert len(obtained[obtained["ID"] == "10-001"]) == expected_days_for_trap_001
+    expected_days_for_trap_002 = 11
+    assert len(obtained[obtained["ID"] == "10-002"]) == expected_days_for_trap_002
