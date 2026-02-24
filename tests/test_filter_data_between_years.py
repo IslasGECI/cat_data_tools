@@ -9,7 +9,6 @@ import os
 import pandas as pd
 import subprocess
 
-
 monthly_data = pd.read_csv("tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv")
 year = 2016
 expected = pd.read_csv("tests/data/filtered_data_after_2016.csv")

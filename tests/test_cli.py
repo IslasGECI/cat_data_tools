@@ -4,7 +4,6 @@ from typer.testing import CliRunner
 import os
 import pandas as pd
 
-
 runner = CliRunner()
 
 

@@ -10,7 +10,6 @@ import numpy as np
 import subprocess
 import os
 
-
 weekly_data_path = "tests/data/weekly_effort_ISO.csv"
 monthly_trappers_path = "tests/data/monthly_trappers.csv"
 

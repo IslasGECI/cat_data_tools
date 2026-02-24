@@ -11,7 +11,6 @@ import json
 import typer
 import warnings
 
-
 app = typer.Typer()
 
 
