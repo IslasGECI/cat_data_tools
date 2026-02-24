@@ -12,6 +12,24 @@ def test_write_effort_captures_as_json():
     command = "write-effort-captures-as-json"
     assert_cli_help(command)
 
+    output_path = "tests/effort_captures.json"
+    gtt.if_exist_remove(output_path)
+
+    effort_captures_path = "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv"
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--effort-captures-path",
+            effort_captures_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+    os.remove(output_path)
+
 
 def test_app_join_traps_positions_and_active_traps_by_id_and_line():
     command = "join-traps-positions-and-active-traps-by-id-and-line"
