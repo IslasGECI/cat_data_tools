@@ -40,6 +40,7 @@ clean:
 	rm --force --recursive tests/__pycache__
 	rm --force .mutmut-cache
 	rm --force coverage.xml
+	rm --force mutants
 
 coverage: setup
 	pytest --cov=${module} --cov-report=xml --verbose && \
