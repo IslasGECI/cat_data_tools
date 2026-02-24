@@ -4,8 +4,10 @@ from cat_data_tools.filter_data_by_month import (
 )
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 from cat_data_tools.update_status_traps import _update_status_traps
+from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
 import cat_data_tools as cdt
 import pandas as pd
+import json
 import typer
 import warnings
 
@@ -17,7 +19,15 @@ app = typer.Typer()
 def write_effort_captures_as_json(
     effort_captures_path: str = typer.Option(), output_path: str = typer.Option()
 ):
-    pass
+    effort_captures_df = pd.read_csv(effort_captures_path)
+    effort_captures_dict = transform_effort_captures_to_dict(effort_captures_df)
+    write_dict_as_json(effort_captures_dict, output_path)
+
+
+def write_dict_as_json(data_dict, output_path):
+    json_string = json.dumps(data_dict, indent=2)
+    with open(output_path, "w") as json_file:
+        json_file.write(json_string)
 
 
 @app.command()
