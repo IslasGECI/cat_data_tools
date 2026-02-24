@@ -7,3 +7,5 @@ def test_transform_effort_captures_to_dict():
     obtained = transform_effort_captures_to_dict(df)
     expected_keys = ["T", "esfuerzo", "capturas"]
     assert set(obtained.keys()) == set(expected_keys)
+    are_effort_zero = any(obtained["esfuerzo"] == 0)
+    assert not are_effort_zero, "There should be no zero values in the effort list"
