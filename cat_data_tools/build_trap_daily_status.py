@@ -10,4 +10,4 @@ def build_trap_daily_status(check_traps_log_df):
     df_activos["Date"] = df_activos["Date"].apply(
         lambda x: pd.date_range(start=x, periods=days_active, freq="D")
     )
-    return df_activos.explode("Date")
+    return df_activos.explode("Date").drop_duplicates(subset=["ID", "Date"])
