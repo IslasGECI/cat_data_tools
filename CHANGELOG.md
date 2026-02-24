@@ -15,6 +15,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [0.11.0] - 2026-02-24
+### Added
+- CLI command `write-effort-captures-as-json` to write effort captures as required by Stan.
+
+### Changed
+- Deprecation warnings for `join-captures-with-traps-info` commands. These commands will be removed in the next major release.
+
 ## [0.10.0] - 2025-06-04
 ### Added
 - Add cli command `join-traps-positions-and-active-traps-by-id-and-line`
