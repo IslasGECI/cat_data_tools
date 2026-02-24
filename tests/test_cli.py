@@ -8,6 +8,11 @@ import pandas as pd
 runner = CliRunner()
 
 
+def test_write_effort_captures_as_json():
+    command = "write-effort-captures-as-json"
+    assert_cli_help(command)
+
+
 def test_app_join_traps_positions_and_active_traps_by_id_and_line():
     command = "join-traps-positions-and-active-traps-by-id-and-line"
     assert_cli_help(command)
