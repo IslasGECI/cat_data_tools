@@ -14,6 +14,13 @@ app = typer.Typer()
 
 
 @app.command()
+def write_effort_captures_as_json(
+    effort_captures_path: str = typer.Option(), output_path: str = typer.Option()
+):
+    pass
+
+
+@app.command()
 def join_traps_positions_and_active_traps_by_id_and_line(
     active_traps_path: str = "", traps_positions_path: str = "", output_path: str = ""
 ):
