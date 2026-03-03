@@ -1,12 +1,7 @@
 import pandas as pd
 
 
-def build_trap_daily_status(check_traps_log_df):
-    days_active = 7
-    return xxbuild_trap_daily_status(check_traps_log_df, days_active)
-
-
-def xxbuild_trap_daily_status(check_traps_log_df, days_active):
+def build_trap_daily_status(check_traps_log_df, days_active):
     check_traps_log_df["Date"] = pd.to_datetime(check_traps_log_df["Date"])
     df = check_traps_log_df[check_traps_log_df["Trap_status"] != "X"].copy()
     df_captures = check_traps_log_df[check_traps_log_df["Trap_status"] == "X"].copy()
