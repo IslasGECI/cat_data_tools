@@ -1,4 +1,7 @@
-from cat_data_tools.build_trap_daily_status import build_trap_daily_status
+from cat_data_tools.build_trap_daily_status import (
+    build_trap_daily_status,
+    build_trap_daily_status_for_duplicated_positions,
+)
 import pandas as pd
 
 active_days = 7
