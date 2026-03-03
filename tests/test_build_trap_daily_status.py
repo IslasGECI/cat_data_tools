@@ -16,3 +16,5 @@ def tests_build_trap_daily_status():
     assert len(obtained[obtained["ID"] == "10-003"]) == expected_days_for_trap_003
     expected_days_for_trap_004 = 10
     assert len(obtained[obtained["ID"] == "10-004"]) == expected_days_for_trap_004
+    expected_days_for_trap_005 = 12
+    assert len(obtained[obtained["ID"] == "10-005"]) == expected_days_for_trap_005
