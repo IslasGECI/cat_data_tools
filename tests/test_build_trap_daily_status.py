@@ -43,3 +43,5 @@ def test_build_trap_daily_status_for_duplicated_positions():
     assert len(obtained[obtained["ID"] == "10-007"]) == expected_days_for_trap_007
     expected_days_for_trap_010 = 14
     assert len(obtained[obtained["ID"] == "10-010"]) == expected_days_for_trap_010
+    expected_days_for_trap_011 = 7
+    assert len(obtained[obtained["ID"] == "10-011"]) == expected_days_for_trap_011
