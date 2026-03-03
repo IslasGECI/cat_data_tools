@@ -21,4 +21,4 @@ def tests_build_trap_daily_status():
     expected_days_for_trap_006 = 12
     assert len(obtained[obtained["ID"] == "10-006"]) == expected_days_for_trap_006
     expected_last_day_trap_006 = "2025-01-12"
-    assert obtained[obtained["ID"] == "10-006"].iloc[-1] == expected_last_day_trap_006
+    assert expected_last_day_trap_006 in str(obtained[obtained["ID"] == "10-006"].Date.iloc[-1])
