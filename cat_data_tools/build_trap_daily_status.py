@@ -11,6 +11,6 @@ def build_trap_daily_status(check_traps_log_df, days_active):
     df_exploded.drop_duplicates(subset=["ID", "Date", "Type", "Trapper"], keep="last", inplace=True)
     df_actives = df_exploded[df_exploded["Trap_status"] == "A"].copy()
     concatenated_catpures = pd.concat([df_actives, df_captures]).drop_duplicates(
-        subset=["ID", "Date", "Type", "Trapper"], keep="last"
+        subset=["ID", "Date", "Type"], keep="last"
     )
     return concatenated_catpures.sort_values(by=["ID", "Date"]).reset_index(drop=True)
