@@ -27,6 +27,10 @@ def test_write_daily_effort_and_captures_summary_by_zone():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
+    expected_headers = ["Fecha", "Zona", "Esfuerzo", "Capturas"]
+    obtained = pd.read_csv(output_path)
+    assert list(obtained.columns) == expected_headers
+    gtt.if_exist_remove(output_path)
 
 
 def test_write_trap_daily_status():
