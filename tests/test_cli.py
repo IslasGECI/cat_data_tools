@@ -157,34 +157,6 @@ def test_app_join_traps_ids_and_daily_status():
     os.remove(output_path)
 
 
-def test_app_join_captures_with_traps_info():
-    command = "join-captures-with-traps-info"
-    assert_cli_help(command)
-    output_path = "tests/data/joined_traps_with_captures.csv"
-
-    if os.path.exists(output_path):
-        os.remove(output_path)
-
-    result = runner.invoke(
-        app,
-        [
-            command,
-            "--trap-daily-status-path",
-            "tests/data/trap_daily_status.csv",
-            "--traps-info-path",
-            "tests/data/traps_list.csv",
-            "--output-path",
-            output_path,
-        ],
-    )
-    assert result.exit_code == 0
-    assert os.path.exists(output_path)
-    obtained = pd.read_csv(output_path)
-    expected_n_columns = 5
-    obtained_n_columns = len(obtained.columns)
-    assert obtained_n_columns == expected_n_columns
-
-
 def test_app_write_monthly_summary():
     result = runner.invoke(
         app,

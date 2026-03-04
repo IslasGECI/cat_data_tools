@@ -1,8 +1,6 @@
-"""A template Python module"""
+"""A Python module to process cats data"""
 
 __version__ = "0.11.0"
-from .adapters import *  # noqa
-from .captures_list import *  # noqa
 from .cli import *  # noqa
 from .filter_data_between_years import *  # noqa
 from .filter_data_by_month import *  # noqa

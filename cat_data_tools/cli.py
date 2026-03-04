@@ -88,17 +88,6 @@ def join_traps_ids_and_daily_status(
     joined_df.to_csv(output_path, index=False)
 
 
-@app.command(deprecated=True, help="Use 'join_traps_ids_and_daily_status' instead")
-def join_captures_with_traps_info(
-    trap_daily_status_path: str = "", traps_info_path: str = "", output_path: str = ""
-):
-    warnings.warn("Use join_traps_ids_and_daily_status instead", DeprecationWarning)
-    daily_status_df = cdt.Adapter_for_path_to_dataframe(trap_daily_status_path).get_dataframe()
-    traps_info_df = cdt.Adapter_for_path_to_dataframe(traps_info_path).get_dataframe()
-    joined_df = cdt.join_trap_info_with_captures(daily_status_df, traps_info_df)
-    joined_df.to_csv(output_path, index=False)
-
-
 @app.command(help="Write monthly summary from weekly summary without trappers")
 def write_monthly_summary_without_trappers(weekly_data_path: str = "", output_path: str = ""):
     effort_data = pd.read_csv(weekly_data_path)
