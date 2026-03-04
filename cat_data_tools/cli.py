@@ -21,7 +21,7 @@ def write_trap_daily_status(
 ):
     traps_check_log_df = pd.read_csv(traps_check_log_path)
     trap_daily_status_df = _build_trap_daily_status(traps_check_log_df, days_active=15)
-    trap_daily_status_df.to_csv(output_path)
+    trap_daily_status_df.to_csv(output_path, index=False)
 
 
 @app.command()
