@@ -2,7 +2,10 @@ from cat_data_tools.filter_data_by_month import (
     summarize_effort_captures_and_add_trappers,
     summarize_effort_captures,
 )
-from cat_data_tools.build_trap_daily_status import _build_trap_daily_status
+from cat_data_tools.build_trap_daily_status import (
+    _build_trap_daily_status,
+    build_trap_daily_status_for_duplicated_positions,
+)
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 from cat_data_tools.update_status_traps import _update_status_traps
 from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
@@ -26,7 +29,11 @@ def write_trap_daily_status(
 
     with open(config_file_path, "r") as file:
         config = json.load(file)
-    trap_daily_status_df = _build_trap_daily_status(
+    build_methods = {
+        "Guadalupe": build_trap_daily_status_for_duplicated_positions,
+        "Socorro": _build_trap_daily_status,
+    }
+    trap_daily_status_df = build_methods[island](
         traps_check_log_df, days_active=config["days_active"]
     )
     trap_daily_status_df.to_csv(output_path, index=False)
