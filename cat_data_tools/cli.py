@@ -14,7 +14,6 @@ import cat_data_tools as cdt
 import pandas as pd
 import json
 import typer
-import warnings
 
 app = typer.Typer()
 
