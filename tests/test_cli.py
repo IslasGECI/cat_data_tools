@@ -11,6 +11,23 @@ def test_write_daily_effort_and_captures_summary_by_zone():
     command = "write-daily-effort-and-captures-summary-by-zone"
     assert_cli_help(command)
 
+    output_path = "tests/traps_effort_captures_daily_summary.csv"
+    gtt.if_exist_remove(output_path)
+
+    trap_daily_status_path = "tests/data/daily_status_two_traps.csv"
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--trap-daily_status-path",
+            trap_daily_status_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+
 
 def test_write_trap_daily_status():
     command = "write-trap-daily-status"
