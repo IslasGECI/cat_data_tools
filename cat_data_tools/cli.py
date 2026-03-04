@@ -15,6 +15,11 @@ app = typer.Typer()
 
 
 @app.command()
+def write_trap_daily_status():
+    pass
+
+
+@app.command()
 def write_effort_captures_as_json(
     effort_captures_path: str = typer.Option(), output_path: str = typer.Option()
 ):
