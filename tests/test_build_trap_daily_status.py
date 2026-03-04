@@ -1,6 +1,6 @@
 from cat_data_tools.build_trap_daily_status import (
     _build_trap_daily_status,
-    build_trap_daily_status_for_duplicated_positions,
+    _build_trap_daily_status_for_duplicated_positions,
 )
 import pandas as pd
 
@@ -37,7 +37,7 @@ def test_build_trap_daily_status_for_duplicated_positions():
     check_traps_log_with_duplicated_positions = pd.read_csv(
         "tests/data/check_traps_log_with_duplicated_position_id.csv"
     )
-    obtained = build_trap_daily_status_for_duplicated_positions(
+    obtained = _build_trap_daily_status_for_duplicated_positions(
         check_traps_log_with_duplicated_positions, active_days
     )
     expected_days_for_trap_007 = 14

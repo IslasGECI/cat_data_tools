@@ -4,7 +4,7 @@ from cat_data_tools.filter_data_by_month import (
 )
 from cat_data_tools.build_trap_daily_status import (
     _build_trap_daily_status,
-    build_trap_daily_status_for_duplicated_positions,
+    _build_trap_daily_status_for_duplicated_positions,
 )
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 from cat_data_tools.update_status_traps import _update_status_traps
@@ -30,7 +30,7 @@ def write_trap_daily_status(
     with open(config_file_path, "r") as file:
         config = json.load(file)
     build_methods = {
-        "Guadalupe": build_trap_daily_status_for_duplicated_positions,
+        "Guadalupe": _build_trap_daily_status_for_duplicated_positions,
         "Socorro": _build_trap_daily_status,
     }
     trap_daily_status_df = build_methods[island](

@@ -9,7 +9,7 @@ def _build_trap_daily_status(check_traps_log_df, days_active):
     return concatenated_captures_sorted
 
 
-def build_trap_daily_status_for_duplicated_positions(check_traps_log_df, days_active):
+def _build_trap_daily_status_for_duplicated_positions(check_traps_log_df, days_active):
     guadalupe_unique_trap_indentificators = ["ID", "Date", "Type", "Trapper"]
     concatenated_captures_sorted = fill_trap_daily_status(
         check_traps_log_df, days_active, guadalupe_unique_trap_indentificators
