@@ -10,3 +10,8 @@ def test_calculate_effort_and_captures():
     assert len(obtained) == expected_rows
     expected_effort_zone_01 = 2
     assert obtained[obtained["Zone"] == "01"].Effort.iloc[0] == expected_effort_zone_01
+    expected_captures_zone_01 = 1
+    assert (
+        obtained[(obtained["Zone"] == "01") & (obtained["Date"] == "2023-04-07")].Captures
+        == expected_captures_zone_01
+    )
