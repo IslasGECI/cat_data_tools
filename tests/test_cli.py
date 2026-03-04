@@ -7,6 +7,11 @@ import pandas as pd
 runner = CliRunner()
 
 
+def test_write_daily_effort_and_captures_summary_by_zone():
+    command = "write-daily-effort-and-captures-summary-by-zone"
+    assert_cli_help(command)
+
+
 def test_write_trap_daily_status():
     command = "write-trap-daily-status"
     assert_cli_help(command)
