@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.0.0] - 2026-03-04
+### Added
+- CLI command `write-daily-effort-and-captures-summary-by-zone`.
+- CLI command `write-trap-daily-status`.
+
+### Removed
+- Deprecated function `join-captures-with-traps-info` commands.
+
 ## [0.11.0] - 2026-02-24
 ### Added
 - CLI command `write-effort-captures-as-json` to write effort captures as required by Stan.
