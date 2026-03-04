@@ -24,6 +24,8 @@ def test_write_trap_daily_status():
             traps_check_log_path,
             "--config-file-path",
             trap_daily_status_config_path,
+            "--island",
+            "Socorro",
             "--output-path",
             output_path,
         ],
