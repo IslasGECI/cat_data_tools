@@ -27,7 +27,7 @@ def test_write_trap_daily_status():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
-    expected_headers = ["Fecha", "Zona", "Esfuerzo", "Capturas"]
+    expected_headers = ["Date", "Type", "ID", "Trapper", "Trap_status", "Bait"]
     obtained = pd.read_csv(output_path)
     assert list(obtained.columns) == expected_headers
     os.remove(output_path)
