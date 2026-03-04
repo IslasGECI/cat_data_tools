@@ -1,5 +1,6 @@
 def get_status_change(daily_status_df):
-    df = daily_status_df.sort_values(by=["ID", "Date"])
+    daily_status_df_copy = daily_status_df.copy().dropna(subset="Trap_status")
+    df = daily_status_df_copy.sort_values(by=["ID", "Date"])
     is_status_changed = df["Trap_status"] != df.groupby("ID")["Trap_status"].shift()
     is_trapper_changed = df["Trapper"] != df.groupby("ID")["Trapper"].shift()
     is_type_changed = df["Type"] != df.groupby("ID")["Type"].shift()
