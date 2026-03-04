@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def build_trap_daily_status(check_traps_log_df, days_active):
+def _build_trap_daily_status(check_traps_log_df, days_active):
     socorro_unique_trap_identificators = ["ID", "Date", "Type"]
     concatenated_captures_sorted = fill_trap_daily_status(
         check_traps_log_df, days_active, socorro_unique_trap_identificators

@@ -1,5 +1,5 @@
 from cat_data_tools.build_trap_daily_status import (
-    build_trap_daily_status,
+    _build_trap_daily_status,
     build_trap_daily_status_for_duplicated_positions,
 )
 import pandas as pd
@@ -9,7 +9,7 @@ active_days = 7
 
 def tests_build_trap_daily_status():
     check_traps_log_df = pd.read_csv("tests/data/check_traps_log.csv")
-    obtained = build_trap_daily_status(check_traps_log_df, active_days)
+    obtained = _build_trap_daily_status(check_traps_log_df, active_days)
     assert isinstance(obtained, pd.DataFrame)
     expected_days_for_trap_001 = 14
     assert len(obtained[obtained["ID"] == "10-001"]) == expected_days_for_trap_001
