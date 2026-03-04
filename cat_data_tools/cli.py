@@ -2,6 +2,7 @@ from cat_data_tools.filter_data_by_month import (
     summarize_effort_captures_and_add_trappers,
     summarize_effort_captures,
 )
+from cat_data_tools.build_trap_daily_status import _build_trap_daily_status
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 from cat_data_tools.update_status_traps import _update_status_traps
 from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
@@ -15,8 +16,12 @@ app = typer.Typer()
 
 
 @app.command()
-def write_trap_daily_status():
-    pass
+def write_trap_daily_status(
+    traps_check_log_path: str = typer.Option(), output_path: str = typer.Option()
+):
+    traps_check_log_df = pd.read_csv(traps_check_log_path)
+    trap_daily_status_df = _build_trap_daily_status(traps_check_log_df, days_active=15)
+    trap_daily_status_df.to_csv(output_path)
 
 
 @app.command()
