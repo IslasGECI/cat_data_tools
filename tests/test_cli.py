@@ -11,6 +11,27 @@ def test_write_trap_daily_status():
     command = "write-trap-daily-status"
     assert_cli_help(command)
 
+    output_path = "tests/trap_daily_status.csv"
+    gtt.if_exist_remove(output_path)
+
+    traps_check_log_path = "tests/data/check_traps_log.csv"
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--traps-check-log-path",
+            traps_check_log_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+    expected_headers = ["Fecha", "Zona", "Esfuerzo", "Capturas"]
+    obtained = pd.read_csv(output_path)
+    assert list(obtained.columns) == expected_headers
+    os.remove(output_path)
+
 
 def test_write_effort_captures_as_json():
     command = "write-effort-captures-as-json"
@@ -32,9 +53,6 @@ def test_write_effort_captures_as_json():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
-    expected_headers = ["Fecha", "Zona", "Esfuerzo", "Capturas"]
-    obtained = pd.read_json(output_path)
-    assert list(obtained.columns) == expected_headers
     os.remove(output_path)
 
 
