@@ -18,6 +18,16 @@ def build_trap_daily_status_for_duplicated_positions(check_traps_log_df, days_ac
 
 
 def fill_trap_daily_status(check_traps_log_df, days_active, unique_trap_identificators):
+    df_actives = activate_traps_for_n_days(
+        check_traps_log_df, days_active, unique_trap_identificators
+    )
+    concatenated_captures_sorted = concatenate_captures_and_actives(
+        check_traps_log_df, df_actives, unique_trap_identificators
+    )
+    return concatenated_captures_sorted
+
+
+def activate_traps_for_n_days(check_traps_log_df, days_active, unique_trap_identificators):
     check_traps_log_df["Date"] = pd.to_datetime(check_traps_log_df["Date"])
     df = check_traps_log_df[check_traps_log_df["Trap_status"] != "X"].copy()
 
@@ -26,10 +36,7 @@ def fill_trap_daily_status(check_traps_log_df, days_active, unique_trap_identifi
 
     df_exploded.drop_duplicates(subset=unique_trap_identificators, keep="last", inplace=True)
     df_actives = df_exploded[df_exploded["Trap_status"] == "A"].copy()
-    concatenated_captures_sorted = concatenate_captures_and_actives(
-        check_traps_log_df, df_actives, unique_trap_identificators
-    )
-    return concatenated_captures_sorted
+    return df_actives
 
 
 def concatenate_captures_and_actives(
