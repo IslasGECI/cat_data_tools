@@ -19,6 +19,7 @@ app = typer.Typer()
 def write_trap_daily_status(
     traps_check_log_path: str = typer.Option(),
     config_file_path: str = typer.Option(),
+    island: str = typer.Option(),
     output_path: str = typer.Option(),
 ):
     traps_check_log_df = pd.read_csv(traps_check_log_path)
