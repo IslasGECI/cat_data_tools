@@ -6,6 +6,7 @@ from cat_data_tools.build_trap_daily_status import (
     _build_trap_daily_status,
     _build_trap_daily_status_for_duplicated_positions,
 )
+from cat_data_tools.calculate_effort_and_captures import calculate_effort_and_captures
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 from cat_data_tools.update_status_traps import _update_status_traps
 from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
@@ -19,8 +20,13 @@ app = typer.Typer()
 
 
 @app.command()
-def write_daily_effort_and_captures_summary_by_zone():
-    pass
+def write_daily_effort_and_captures_summary_by_zone(
+    trap_daily_status_path: str = typer.Option(),
+    output_path: str = typer.Option(),
+):
+    trap_daily_status_df = pd.read_csv(trap_daily_status_path)
+    effort_captures_summary_df = calculate_effort_and_captures(trap_daily_status_df)
+    effort_captures_summary_df.to_csv(output_path)
 
 
 @app.command()
