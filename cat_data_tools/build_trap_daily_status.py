@@ -21,8 +21,9 @@ def fill_trap_daily_status(check_traps_log_df, days_active, unique_trap_identifi
     df_actives = activate_traps_for_n_days(
         check_traps_log_df, days_active, unique_trap_identificators
     )
+    df_captures = check_traps_log_df[check_traps_log_df["Trap_status"] == "X"].copy()
     concatenated_captures_sorted = concatenate_captures_and_actives(
-        check_traps_log_df, df_actives, unique_trap_identificators
+        df_captures, df_actives, unique_trap_identificators
     )
     return concatenated_captures_sorted
 
@@ -39,10 +40,7 @@ def activate_traps_for_n_days(check_traps_log_df, days_active, unique_trap_ident
     return df_actives
 
 
-def concatenate_captures_and_actives(
-    check_traps_log_df, active_traps_df, unique_trap_identificators
-):
-    df_captures = check_traps_log_df[check_traps_log_df["Trap_status"] == "X"].copy()
+def concatenate_captures_and_actives(df_captures, active_traps_df, unique_trap_identificators):
     concatenated_catpures = pd.concat([active_traps_df, df_captures]).drop_duplicates(
         subset=unique_trap_identificators, keep="last"
     )
