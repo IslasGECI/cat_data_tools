@@ -7,6 +7,11 @@ import pandas as pd
 runner = CliRunner()
 
 
+def test_write_trap_daily_status():
+    command = "write-trap-daily-status"
+    assert_cli_help(command)
+
+
 def test_write_effort_captures_as_json():
     command = "write-effort-captures-as-json"
     assert_cli_help(command)
