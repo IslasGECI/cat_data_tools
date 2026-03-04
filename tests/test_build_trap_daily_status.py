@@ -40,6 +40,8 @@ def test_build_trap_daily_status_for_duplicated_positions():
     obtained = build_trap_daily_status_for_duplicated_positions(
         check_traps_log_with_duplicated_positions, active_days
     )
+    print(obtained)
+    assert False
     expected_days_for_trap_007 = 14
     assert len(obtained[obtained["ID"] == "10-007"]) == expected_days_for_trap_007
     expected_days_for_trap_010 = 14
