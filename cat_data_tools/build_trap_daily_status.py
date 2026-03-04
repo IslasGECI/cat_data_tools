@@ -20,14 +20,23 @@ def build_trap_daily_status_for_duplicated_positions(check_traps_log_df, days_ac
 def fill_trap_daily_status(check_traps_log_df, days_active, unique_trap_identificators):
     check_traps_log_df["Date"] = pd.to_datetime(check_traps_log_df["Date"])
     df = check_traps_log_df[check_traps_log_df["Trap_status"] != "X"].copy()
-    df_captures = check_traps_log_df[check_traps_log_df["Trap_status"] == "X"].copy()
 
     df["Date"] = df["Date"].apply(lambda x: pd.date_range(start=x, periods=days_active, freq="D"))
     df_exploded = df.explode("Date")
 
     df_exploded.drop_duplicates(subset=unique_trap_identificators, keep="last", inplace=True)
     df_actives = df_exploded[df_exploded["Trap_status"] == "A"].copy()
-    concatenated_catpures = pd.concat([df_actives, df_captures]).drop_duplicates(
+    concatenated_captures_sorted = concatenate_captures_and_actives(
+        check_traps_log_df, df_actives, unique_trap_identificators
+    )
+    return concatenated_captures_sorted
+
+
+def concatenate_captures_and_actives(
+    check_traps_log_df, active_traps_df, unique_trap_identificators
+):
+    df_captures = check_traps_log_df[check_traps_log_df["Trap_status"] == "X"].copy()
+    concatenated_catpures = pd.concat([active_traps_df, df_captures]).drop_duplicates(
         subset=unique_trap_identificators, keep="last"
     )
     concatenated_captures_sorted = concatenated_catpures.sort_values(by=["ID", "Date"]).reset_index(
