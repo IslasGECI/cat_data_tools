@@ -11,7 +11,5 @@ def test_calculate_effort_and_captures():
     expected_effort_zone_01 = 2
     assert obtained[obtained["Zone"] == "01"].Effort.iloc[0] == expected_effort_zone_01
     expected_captures_zone_01 = 1
-    assert (
-        obtained[(obtained["Zone"] == "01") & (obtained["Date"] == "2023-04-07")].Captures.values[0]
-        == expected_captures_zone_01
-    )
+    mask = (obtained["Zone"] == "01") & (obtained["Date"] == "2023-04-07")
+    assert obtained[mask].Captures.values[0] == expected_captures_zone_01
