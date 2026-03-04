@@ -15,12 +15,15 @@ def test_write_trap_daily_status():
     gtt.if_exist_remove(output_path)
 
     traps_check_log_path = "tests/data/check_traps_log.csv"
+    trap_daily_status_config_path = "tests/data/trap_daily_status_config.json"
     result = runner.invoke(
         app,
         [
             command,
             "--traps-check-log-path",
             traps_check_log_path,
+            "--config-file-path",
+            trap_daily_status_config_path,
             "--output-path",
             output_path,
         ],
