@@ -19,7 +19,8 @@ def build_trap_daily_status_for_duplicated_positions(check_traps_log_df, days_ac
 
 def fill_trap_daily_status(check_traps_log_df, days_active, unique_trap_identificators):
     check_traps_log_df["Date"] = pd.to_datetime(check_traps_log_df["Date"])
-    df_without_captures = check_traps_log_df[check_traps_log_df["Trap_status"] != "X"].copy()
+    df_without_captures = check_traps_log_df.copy()
+    df_without_captures["Trap_status"] = df_without_captures["Trap_status"].replace("X", "A")
     df_actives = activate_traps_for_n_days(
         df_without_captures, days_active, unique_trap_identificators
     )
