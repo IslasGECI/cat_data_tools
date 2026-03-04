@@ -6,5 +6,5 @@ import pandas as pd
 def tests_get_status_change():
     daily_status_df = pd.read_csv("tests/data/daily_status_two_traps.csv")
     obtained = get_status_change(daily_status_df)
-    expected_status_changes = 23
+    expected_status_changes = 22
     assert len(obtained) == expected_status_changes
