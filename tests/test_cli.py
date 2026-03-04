@@ -19,7 +19,7 @@ def test_write_daily_effort_and_captures_summary_by_zone():
         app,
         [
             command,
-            "--trap-daily_status-path",
+            "--trap-daily-status-path",
             trap_daily_status_path,
             "--output-path",
             output_path,
