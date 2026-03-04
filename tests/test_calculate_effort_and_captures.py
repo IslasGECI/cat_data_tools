@@ -8,3 +8,5 @@ def test_calculate_effort_and_captures():
     obtained = calculate_effort_and_captures(daily_status)
     expected_rows = 11
     assert len(obtained) == expected_rows
+    expected_effort_zone_01 = 2
+    assert obtained[obtained["Zone"] == "01"].Effort.loc["2023-04-03"] == expected_effort_zone_01
