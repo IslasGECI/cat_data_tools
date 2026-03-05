@@ -15,18 +15,25 @@ def test_write_daily_effort_and_captures_summary_by_zone():
     gtt.if_exist_remove(output_path)
 
     trap_daily_status_path = "tests/data/daily_status_two_traps.csv"
+
+    spanish_date_df = pd.read_csv(trap_daily_status_path)
+    spanish_date_df.rename(columns={"Date": "Fecha"}, inplace=True)
+    spanish_trap_daily_status_path = "tests/data/daily_status_two_traps_spanish_dates.csv"
+    spanish_date_df.to_csv(spanish_trap_daily_status_path, index=False)
+
     result = runner.invoke(
         app,
         [
             command,
             "--trap-daily-status-path",
-            trap_daily_status_path,
+            spanish_trap_daily_status_path,
             "--output-path",
             output_path,
         ],
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
+    gtt.if_exist_remove(spanish_trap_daily_status_path)
     expected_headers = ["Fecha", "Zona", "Esfuerzo", "Capturas"]
     obtained = pd.read_csv(output_path)
     assert list(obtained.columns) == expected_headers
