@@ -49,7 +49,8 @@ def write_trap_daily_status(
     trap_daily_status_df = build_methods[island](
         traps_check_log_df, days_active=config["days_active"]
     )
-    trap_daily_status_df.to_csv(output_path, index=False)
+    trap_daily_status_df_renamed = trap_daily_status_df.rename(columns={"Date": "Fecha"})
+    trap_daily_status_df_renamed.to_csv(output_path, index=False)
 
 
 @app.command()
