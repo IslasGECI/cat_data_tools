@@ -23,8 +23,7 @@ def write_daily_effort_and_captures_summary_by_zone(
     trap_daily_status_path: str = typer.Option(),
     output_path: str = typer.Option(),
 ):
-    trap_daily_status_df = pd.read_csv(trap_daily_status_path)
-    trap_daily_status_df.rename(columns={"Fecha": "Date"}, inplace=True)
+    trap_daily_status_df = adapt_date_column_name(trap_daily_status_path)
     effort_captures_summary_df = calculate_effort_and_captures(trap_daily_status_df)
     effort_captures_summary_df_renamed = effort_captures_summary_df.rename(
         columns={"Date": "Fecha", "Zone": "Zona", "Effort": "Esfuerzo", "Captures": "Capturas"}
@@ -39,8 +38,7 @@ def write_trap_daily_status(
     island: str = typer.Option(),
     output_path: str = typer.Option(),
 ):
-    traps_check_log_df = pd.read_csv(traps_check_log_path)
-    traps_check_log_df.rename(columns={"Fecha": "Date"}, inplace=True)
+    traps_check_log_df = adapt_date_column_name(traps_check_log_path)
 
     with open(config_file_path, "r") as file:
         config = json.load(file)
@@ -53,6 +51,11 @@ def write_trap_daily_status(
     )
     trap_daily_status_df_renamed = trap_daily_status_df.rename(columns={"Date": "Fecha"})
     trap_daily_status_df_renamed.to_csv(output_path, index=False)
+
+
+def adapt_date_column_name(traps_check_log_path):
+    traps_check_log_df = pd.read_csv(traps_check_log_path)
+    return traps_check_log_df.rename(columns={"Fecha": "Date"})
 
 
 @app.command()
