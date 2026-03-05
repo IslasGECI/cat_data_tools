@@ -39,6 +39,7 @@ def write_trap_daily_status(
     output_path: str = typer.Option(),
 ):
     traps_check_log_df = pd.read_csv(traps_check_log_path)
+    traps_check_log_df.rename(columns={"Fecha": "Date"}, inplace=True)
 
     with open(config_file_path, "r") as file:
         config = json.load(file)
