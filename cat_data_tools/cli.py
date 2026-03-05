@@ -53,9 +53,9 @@ def write_trap_daily_status(
     trap_daily_status_df_renamed.to_csv(output_path, index=False)
 
 
-def adapt_date_column_name(traps_check_log_path):
-    traps_check_log_df = pd.read_csv(traps_check_log_path)
-    return traps_check_log_df.rename(columns={"Fecha": "Date"})
+def adapt_date_column_name(input_path):
+    input_df = pd.read_csv(input_path)
+    return input_df.rename(columns={"Fecha": "Date"})
 
 
 @app.command()
