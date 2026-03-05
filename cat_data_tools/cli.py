@@ -24,6 +24,7 @@ def write_daily_effort_and_captures_summary_by_zone(
     output_path: str = typer.Option(),
 ):
     trap_daily_status_df = pd.read_csv(trap_daily_status_path)
+    trap_daily_status_df.rename(columns={"Fecha": "Date"}, inplace=True)
     effort_captures_summary_df = calculate_effort_and_captures(trap_daily_status_df)
     effort_captures_summary_df_renamed = effort_captures_summary_df.rename(
         columns={"Date": "Fecha", "Zone": "Zona", "Effort": "Esfuerzo", "Captures": "Capturas"}
