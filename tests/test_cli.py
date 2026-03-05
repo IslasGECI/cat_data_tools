@@ -62,13 +62,17 @@ def test_write_trap_daily_status():
     obtained = pd.read_csv(output_path)
     assert list(obtained.columns) == expected_headers
     os.remove(output_path)
+    spanish_date_df = pd.read_csv(traps_check_log_path)
+    spanish_date_df.rename(columns={"Date": "Fecha"}, inplace=True)
+    spanish_traps_check_log_path = "tests/data/check_traps_log_spanish_dates.csv"
+    spanish_date_df.to_csv(spanish_traps_check_log_path, index=False)
 
     result = runner.invoke(
         app,
         [
             command,
             "--traps-check-log-path",
-            traps_check_log_path,
+            spanish_traps_check_log_path,
             "--config-file-path",
             trap_daily_status_config_path,
             "--island",
@@ -82,6 +86,8 @@ def test_write_trap_daily_status():
     obtained = pd.read_csv(output_path)
     expected_rows = 161
     assert len(obtained) == expected_rows
+    gtt.if_exist_remove(spanish_traps_check_log_path)
+    gtt.if_exist_remove(output_path)
 
 
 def test_write_effort_captures_as_json():
