@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.0.1] - 2026-03-05
+### Fixed
+- Date column adapter in CLI commands `write-trap-daily-status` and `write-daily-effort-and-captures-summary-by-zone`. Now can receive Spanish and English date column names, and always returns them in Spanish.
+
 ## [1.0.0] - 2026-03-04
 ### Added
 - CLI command `write-daily-effort-and-captures-summary-by-zone`.
