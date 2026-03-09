@@ -10,8 +10,7 @@ def summarize_effort_captures(effort_data):
 
 def summarize_effort_captures_and_add_trappers(monthly_trappers, effort_data):
     monthly_data = summarize_effort_captures(effort_data)
-    monthly_data["Tramperos"] = monthly_trappers["Tramperos"]
-    return monthly_data
+    return monthly_data.join(monthly_trappers.set_index("Fecha"), on="Fecha")
 
 
 def add_date_column(monthly_data):
