@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.0.2] - 2026-03-09
+### Fixed
+- The function `summarize_effort_captures_and_add_trappers()` now joins the number of trappers by date, not by row.
 ## [1.0.1] - 2026-03-05
 ### Fixed
 - Date column adapter in CLI commands `write-trap-daily-status` and `write-daily-effort-and-captures-summary-by-zone`. Now can receive Spanish and English date column names, and always returns them in Spanish.
