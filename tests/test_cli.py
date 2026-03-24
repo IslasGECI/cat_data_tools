@@ -27,6 +27,23 @@ def test_write_trap_check_log():
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
 
+    trap_daily_status_path = "tests/data/daily_status_with_r_in_check_in_spanish.csv"
+    output_path = "tests/trap_check_log_from_spanish.csv"
+    gtt.if_exist_remove(output_path)
+
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--trap-daily-status-path",
+            trap_daily_status_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+
 
 def test_write_daily_effort_and_captures_summary_by_zone():
     command = "write-daily-effort-and-captures-summary-by-zone"
