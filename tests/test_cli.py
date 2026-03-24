@@ -10,6 +10,22 @@ runner = CliRunner()
 def test_write_trap_check_log():
     command = "write-trap-check-log"
     assert_cli_help(command)
+    trap_daily_status_path = "tests/data/daily_status_with_r_in_check.csv"
+    output_path = "tests/trap_check_log.csv"
+    gtt.if_exist_remove(output_path)
+
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--trap-daily-status-path",
+            trap_daily_status_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
 
 
 def test_write_daily_effort_and_captures_summary_by_zone():
