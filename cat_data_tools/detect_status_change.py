@@ -14,3 +14,9 @@ def add_next_status_column(daily_status_df):
         "Trap_status"
     ].shift(-1)
     return sorted_daily
+
+
+def subsitute_check_traps_status(df):
+    checked_traps = df[df.Trap_status.str.startswith("R")]
+    checked_traps.Trap_status = checked_traps.next_status
+    return checked_traps
