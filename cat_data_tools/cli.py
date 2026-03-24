@@ -29,7 +29,15 @@ def write_trap_check_log(
     output_path: str = typer.Option(),
 ):
     daily_status_df = pd.read_csv(trap_daily_status_path)
-    check_log = compute_trap_check_log(daily_status_df)
+    daily_status_df_renamed = daily_status_df.rename(
+        columns={
+            "Fecha": "Date",
+            "Tipo": "Type",
+            "Estado_trampa": "Trap_status",
+            "Atrayente": "Bait",
+        }
+    )
+    check_log = compute_trap_check_log(daily_status_df_renamed)
     check_log.to_csv(output_path, index=False)
 
 
