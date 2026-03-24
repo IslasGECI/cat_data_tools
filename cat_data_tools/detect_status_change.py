@@ -19,6 +19,8 @@ def add_next_status_column(daily_status_df):
     sorted_daily["next_status"] = sorted_daily.groupby(["ID", "Type", "Trapper"])[
         "Trap_status"
     ].shift(-1)
+    is_capture = sorted_daily["Trap_status"] == "RX"
+    sorted_daily.loc[is_capture, "next_status"] = "X"
     return sorted_daily
 
 
