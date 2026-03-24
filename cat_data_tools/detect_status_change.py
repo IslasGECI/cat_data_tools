@@ -6,3 +6,11 @@ def get_status_change(daily_status_df):
     is_type_changed = df["Type"] != df.groupby("ID")["Type"].shift()
     filtered_df = df.loc[is_status_changed | is_trapper_changed | is_type_changed]
     return filtered_df.reset_index(drop=True)
+
+
+def add_next_status_column(daily_status_df):
+    sorted_daily = daily_status_df.sort_values(["ID", "Type", "Trapper", "Date"])
+    sorted_daily["next_status"] = sorted_daily.groupby(["ID", "Type", "Trapper"])[
+        "Trap_status"
+    ].shift(-1)
+    return sorted_daily
