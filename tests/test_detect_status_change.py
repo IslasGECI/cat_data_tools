@@ -31,3 +31,5 @@ def test_subsitute_check_traps_status():
     )
     obtained = subsitute_check_traps_status(df)
     assert obtained.loc[0, "Trap_status"] == "A"
+    expected_rows = 2
+    assert len(obtained) == expected_rows
