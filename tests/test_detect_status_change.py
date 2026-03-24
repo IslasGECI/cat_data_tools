@@ -28,7 +28,7 @@ def test_compute_trap_check_log():
         "Bait",
         "Nombre_del_responsable",
     ]
-    assert obtained.colums == expected_colums
+    assert obtained.columns == expected_colums
 
 
 def test_add_next_status_column():
