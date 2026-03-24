@@ -19,6 +19,11 @@ app = typer.Typer()
 
 
 @app.command()
+def write_trap_check_log():
+    pass
+
+
+@app.command()
 def write_daily_effort_and_captures_summary_by_zone(
     trap_daily_status_path: str = typer.Option(),
     output_path: str = typer.Option(),
