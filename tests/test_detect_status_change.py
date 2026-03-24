@@ -19,6 +19,8 @@ def test_add_next_status_column():
     daily_status_df = pd.read_csv("tests/data/daily_status_with_r_in_check.csv")
     obtained = add_next_status_column(daily_status_df)
     assert obtained.loc[0, "next_status"] == "A"
+    mask = (obtained["Date"] == "2026-03-05") & (obtained["ID"] == "03-191")
+    assert obtained[mask]["next_status"].values[0] == "X"
 
 
 def test_subsitute_check_traps_status():
