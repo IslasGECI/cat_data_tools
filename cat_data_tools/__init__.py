@@ -1,6 +1,6 @@
 """A Python module to process cats data"""
 
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 from .cli import *  # noqa
 from .filter_data_between_years import *  # noqa
 from .filter_data_by_month import *  # noqa
