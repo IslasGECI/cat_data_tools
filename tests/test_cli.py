@@ -3,6 +3,7 @@ import geci_test_tools as gtt
 from typer.testing import CliRunner
 import os
 import pandas as pd
+import subprocess
 
 runner = CliRunner()
 
@@ -26,6 +27,9 @@ def test_write_trap_check_log():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
+
+    obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
+    assert ",," not in obtained
 
     trap_daily_status_path = "tests/data/daily_status_with_r_in_check_in_spanish.csv"
     output_path = "tests/trap_check_log_from_spanish.csv"
