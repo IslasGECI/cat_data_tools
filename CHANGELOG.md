@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.1.0] - 2026-03-24
+### Added
+- CLI command `write-trap-check-log`. This command receives a splitted daily positions and returns only the list of traps checked.
+
 ## [1.0.2] - 2026-03-09
 ### Fixed
 - The function `summarize_effort_captures_and_add_trappers()` now joins the number of trappers by date, not by row.
