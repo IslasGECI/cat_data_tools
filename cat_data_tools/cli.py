@@ -25,8 +25,14 @@ def write_trap_check_log(
     output_path: str = typer.Option(),
 ):
     daily_status_df = pd.read_csv(trap_daily_status_path)
+    check_log = compute_trap_check_log(daily_status_df)
+    check_log.to_csv(output_path, index=False)
+
+
+def compute_trap_check_log(daily_status_df):
     daily_status_with_next_status = add_next_status_column(daily_status_df)
-    subsitute_check_traps_status(daily_status_with_next_status).to_csv(output_path, index=False)
+    check_log = subsitute_check_traps_status(daily_status_with_next_status)
+    return check_log
 
 
 @app.command()
