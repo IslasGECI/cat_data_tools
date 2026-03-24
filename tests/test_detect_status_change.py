@@ -1,5 +1,6 @@
 from cat_data_tools.detect_status_change import (
     add_next_status_column,
+    compute_trap_check_log,
     get_status_change,
     subsitute_check_traps_status,
 )
@@ -13,6 +14,21 @@ def tests_get_status_change():
     obtained = get_status_change(daily_status_df)
     expected_status_changes = 22
     assert len(obtained) == expected_status_changes
+
+
+def test_compute_trap_check_log():
+    daily_status_df = pd.read_csv("tests/data/daily_status_with_r_in_check.csv")
+    obtained = compute_trap_check_log(daily_status_df)
+    expected_colums = [
+        "Date",
+        "Type",
+        "ID",
+        "Trapper",
+        "Trap_status",
+        "Bait",
+        "Nombre_del_responsable",
+    ]
+    assert obtained.colums == expected_colums
 
 
 def test_add_next_status_column():
