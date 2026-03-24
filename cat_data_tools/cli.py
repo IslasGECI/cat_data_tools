@@ -38,7 +38,7 @@ def write_trap_check_log(
         }
     )
     check_log = compute_trap_check_log(daily_status_df_renamed)
-    check_log.to_csv(output_path, index=False)
+    check_log.to_csv(output_path, index=False, na_rep="NA")
 
 
 @app.command()
