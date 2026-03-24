@@ -8,6 +8,12 @@ def get_status_change(daily_status_df):
     return filtered_df.reset_index(drop=True)
 
 
+def compute_trap_check_log(daily_status_df):
+    daily_status_with_next_status = add_next_status_column(daily_status_df)
+    check_log = subsitute_check_traps_status(daily_status_with_next_status)
+    return check_log
+
+
 def add_next_status_column(daily_status_df):
     sorted_daily = daily_status_df.sort_values(["ID", "Type", "Trapper", "Date"])
     sorted_daily["next_status"] = sorted_daily.groupby(["ID", "Type", "Trapper"])[

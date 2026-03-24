@@ -7,7 +7,11 @@ from cat_data_tools.build_trap_daily_status import (
     _build_trap_daily_status_for_duplicated_positions,
 )
 from cat_data_tools.calculate_effort_and_captures import calculate_effort_and_captures
-from cat_data_tools.detect_status_change import add_next_status_column, subsitute_check_traps_status
+from cat_data_tools.detect_status_change import (
+    add_next_status_column,
+    compute_trap_check_log,
+    subsitute_check_traps_status,
+)
 from cat_data_tools.filter_data_between_years import filter_data_between_years
 from cat_data_tools.update_status_traps import _update_status_traps
 from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
@@ -27,12 +31,6 @@ def write_trap_check_log(
     daily_status_df = pd.read_csv(trap_daily_status_path)
     check_log = compute_trap_check_log(daily_status_df)
     check_log.to_csv(output_path, index=False)
-
-
-def compute_trap_check_log(daily_status_df):
-    daily_status_with_next_status = add_next_status_column(daily_status_df)
-    check_log = subsitute_check_traps_status(daily_status_with_next_status)
-    return check_log
 
 
 @app.command()
