@@ -11,16 +11,7 @@ def get_status_change(daily_status_df):
 def compute_trap_check_log(daily_status_df):
     daily_status_with_next_status = add_next_status_column(daily_status_df)
     check_log = subsitute_check_traps_status(daily_status_with_next_status)
-    columns_list = [
-        "Date",
-        "Type",
-        "ID",
-        "Trapper",
-        "Trap_status",
-        "Bait",
-        "Nombre_del_responsable",
-    ]
-    return check_log[columns_list]
+    return check_log.drop(columns=["next_status"])
 
 
 def add_next_status_column(daily_status_df):
