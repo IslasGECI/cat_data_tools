@@ -30,6 +30,7 @@ def test_write_trap_check_log():
 
     obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
     assert ",," not in obtained
+    gtt.if_exist_remove(output_path)
 
     trap_daily_status_path = "tests/data/daily_status_with_r_in_check_in_spanish.csv"
     output_path = "tests/trap_check_log_from_spanish.csv"
@@ -47,6 +48,7 @@ def test_write_trap_check_log():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
+    gtt.if_exist_remove(output_path)
 
 
 def test_write_daily_effort_and_captures_summary_by_zone():
