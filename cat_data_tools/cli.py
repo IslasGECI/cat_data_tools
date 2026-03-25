@@ -80,6 +80,11 @@ def adapt_date_column_name(input_path):
 
 
 @app.command()
+def write_posterior_samples_summary():
+    pass
+
+
+@app.command()
 def write_effort_captures_as_json(
     effort_captures_path: str = typer.Option(), output_path: str = typer.Option()
 ):
