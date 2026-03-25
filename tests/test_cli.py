@@ -145,6 +145,23 @@ def test_write_posterior_samples_summary():
     command = "write-posterior-samples-summary"
     assert_cli_help(command)
 
+    output_path = "tests/posterior_samples_summary.json"
+    gtt.if_exist_remove(output_path)
+
+    posterior_results_path = "tests/data/posterior_results.csv"
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--posterior-results-path",
+            posterior_results_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+
 
 def test_write_effort_captures_as_json():
     command = "write-effort-captures-as-json"
