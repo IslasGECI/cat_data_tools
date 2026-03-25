@@ -12,3 +12,7 @@ def compute_N0(posterior_samples):
 
 def compute_birth_rate(posterior_samples):
     return posterior_samples.r.median()
+
+
+def compute_catchability(posterior_samples):
+    return posterior_samples.q.median()
