@@ -34,7 +34,7 @@ def fill_trap_daily_status(check_traps_log_df, days_active, unique_trap_identifi
 
 def activate_traps_for_n_days(df_without_captures, days_active, unique_trap_identificators):
     df_without_captures["Date"] = df_without_captures["Date"].apply(
-        lambda x: pd.date_range(start=x, periods=days_active, freq="D")
+        lambda x: pd.date_range(start=x, periods=days_active)
     )
     df_exploded = df_without_captures.explode("Date")
 
