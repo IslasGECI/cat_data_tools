@@ -141,6 +141,11 @@ def test_write_trap_daily_status():
     gtt.if_exist_remove(output_path)
 
 
+def test_write_posterior_samples_summary():
+    command = "write-posterior-samples-summary"
+    assert_cli_help(command)
+
+
 def test_write_effort_captures_as_json():
     command = "write-effort-captures-as-json"
     assert_cli_help(command)
