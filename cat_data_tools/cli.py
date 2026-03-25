@@ -11,6 +11,7 @@ from cat_data_tools.detect_status_change import (
     compute_trap_check_log,
 )
 from cat_data_tools.filter_data_between_years import filter_data_between_years
+from cat_data_tools.summary_posterior_results import compute_posterior_summary
 from cat_data_tools.update_status_traps import _update_status_traps
 from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
 import cat_data_tools as cdt
@@ -80,8 +81,12 @@ def adapt_date_column_name(input_path):
 
 
 @app.command()
-def write_posterior_samples_summary():
-    pass
+def write_posterior_samples_summary(
+    posterior_results_path: str = typer.Option(), output_path: str = typer.Option()
+):
+    posterior_results_df = pd.read_csv(posterior_results_path)
+    posterior_results_dict = compute_posterior_summary(posterior_results_df)
+    write_dict_as_json(posterior_results_dict, output_path)
 
 
 @app.command()
