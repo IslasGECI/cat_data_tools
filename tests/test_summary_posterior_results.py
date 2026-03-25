@@ -1,13 +1,20 @@
 from cat_data_tools.summary_posterior_results import (
-    compute_critical_effort,
-    compute_N0,
     compute_birth_rate,
     compute_catchability,
+    compute_critical_effort,
+    compute_N0,
+    compute_posterior_summary,
 )
 import pandas as pd
 import pytest
 
 posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
+
+
+def test_compute_posterior_summary():
+    obtained = compute_posterior_summary(posterior_samples)
+    expected_keys = ["critical_effort", "r", "q", "N0"]
+    assert set(obtained.keys) == set(expected_keys)
 
 
 def test_compute_critical_effort():
