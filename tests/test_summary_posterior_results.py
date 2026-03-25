@@ -2,6 +2,7 @@ from cat_data_tools.summary_posterior_results import (
     compute_critical_effort,
     compute_N0,
     compute_birth_rate,
+    compute_catchability,
 )
 import pandas as pd
 import pytest
@@ -28,3 +29,10 @@ def test_compute_birth_rate():
     assert isinstance(obtained, float)
     expected_r = 0.27993238
     assert pytest.approx(obtained, rel=0.05) == expected_r
+
+
+def test_compute_catchability():
+    obtained = compute_catchability(posterior_samples)
+    assert isinstance(obtained, float)
+    expected_q = 2.8105986e-05
+    assert pytest.approx(obtained, rel=0.05) == expected_q
