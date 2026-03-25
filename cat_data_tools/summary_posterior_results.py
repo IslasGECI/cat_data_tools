@@ -1,3 +1,13 @@
+def compute_posterior_summary(posterior_samples):
+    summary = {
+        "critical_effort": compute_critical_effort(posterior_samples),
+        "N0": compute_N0(posterior_samples),
+        "r": compute_birth_rate(posterior_samples),
+        "q": compute_catchability(posterior_samples),
+    }
+    return summary
+
+
 def compute_critical_effort(posterior_samples):
     posterior_df = posterior_samples.copy()
     r = posterior_df["r"]
