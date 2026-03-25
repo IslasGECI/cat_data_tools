@@ -31,6 +31,9 @@ def tests_build_trap_daily_status():
     assert len(obtained[obtained["ID"] == "10-009"]) == expected_days_for_trap_009
     expected_days_for_trap_010 = 9
     assert len(obtained[obtained["ID"] == "10-010"]) == expected_days_for_trap_010
+    obtained_captures = len(obtained[obtained.Trap_status == "X"])
+    expected_captures = 2
+    assert obtained_captures == expected_captures
 
 
 def test_build_trap_daily_status_for_duplicated_positions():
