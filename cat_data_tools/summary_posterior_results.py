@@ -8,3 +8,7 @@ def compute_critical_effort(posterior_samples):
 
 def compute_N0(posterior_samples):
     return int(posterior_samples.N0.median().round(0))
+
+
+def compute_birth_rate(posterior_samples):
+    return posterior_samples.r.median()
