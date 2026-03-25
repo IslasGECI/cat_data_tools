@@ -1,5 +1,10 @@
-from cat_data_tools.summary_posterior_results import compute_critical_effort, compute_N0
+from cat_data_tools.summary_posterior_results import (
+    compute_critical_effort,
+    compute_N0,
+    compute_birth_rate,
+)
 import pandas as pd
+import pytest
 
 posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
 
@@ -16,3 +21,10 @@ def tests_compute_N0():
     assert isinstance(obtained, int)
     expected_N0 = 72
     assert obtained == expected_N0
+
+
+def test_compute_birth_rate():
+    obtained = compute_birth_rate(posterior_samples)
+    assert isinstance(obtained, float)
+    expected_r = 0.27993238
+    assert pytest.approx(obtained, rel=0.05) == expected_r
