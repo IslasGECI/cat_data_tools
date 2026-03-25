@@ -1,4 +1,4 @@
-from summary_posterior_results import compute_critical_effort
+from cat_data_tools.summary_posterior_results import compute_critical_effort
 import pandas as pd
 
 
