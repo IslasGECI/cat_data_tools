@@ -84,8 +84,17 @@ def adapt_date_column_name(input_path):
 def write_posterior_samples_summary(
     posterior_results_path: str = typer.Option(), output_path: str = typer.Option()
 ):
+    effort_captures_path = "tests/data/monthly_effort_captures_for_tests.csv"
+    xxwrite_posterior_samples_summary(posterior_results_path, effort_captures_path, output_path)
+
+
+def xxwrite_posterior_samples_summary(
+    posterior_results_path: str = typer.Option(),
+    effort_captures_path: str = typer.Option(),
+    output_path: str = typer.Option(),
+):
     posterior_results_df = pd.read_csv(posterior_results_path)
-    effort_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
+    effort_captures_df = pd.read_csv(effort_captures_path)
     posterior_results_dict = compute_posterior_summary(posterior_results_df, effort_captures_df)
     write_dict_as_json(posterior_results_dict, output_path)
 
