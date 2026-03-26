@@ -8,6 +8,10 @@ def compute_posterior_summary(posterior_samples):
     return summary
 
 
+def compute_population_size_time_series(posterior_samples):
+    return {"population_size": [], "Date": []}
+
+
 def compute_critical_effort(posterior_samples):
     posterior_df = posterior_samples.copy()
     r = posterior_df["r"]
