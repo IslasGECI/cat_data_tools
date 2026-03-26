@@ -31,7 +31,7 @@ def test_compute_population_size_time_series():
     )
     effort_captures_df = pd.DataFrame({"Fecha": dates})
     obtained = compute_population_size_time_series(posterior_samples, effort_captures_df)
-    expected_keys = ["population_size", "Date"]
+    expected_keys = ["population_size", "Date", "Births", "Captures"]
     assert set(obtained.keys()) == set(expected_keys)
     assert len(obtained["population_size"]) == expected_series_length
     assert len(obtained["Date"]) == expected_series_length
