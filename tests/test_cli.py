@@ -142,7 +142,7 @@ def test_write_trap_daily_status():
 
 
 def test_write_posterior_samples_summary():
-    command = "xxwrite-posterior-samples-summary"
+    command = "write-posterior-samples-summary"
     assert_cli_help(command)
 
     output_path = "tests/posterior_samples_summary.json"

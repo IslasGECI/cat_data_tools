@@ -82,14 +82,6 @@ def adapt_date_column_name(input_path):
 
 @app.command()
 def write_posterior_samples_summary(
-    posterior_results_path: str = typer.Option(), output_path: str = typer.Option()
-):
-    effort_captures_path = "tests/data/monthly_effort_captures_for_tests.csv"
-    xxwrite_posterior_samples_summary(posterior_results_path, effort_captures_path, output_path)
-
-
-@app.command()
-def xxwrite_posterior_samples_summary(
     posterior_results_path: str = typer.Option(),
     effort_captures_path: str = typer.Option(),
     output_path: str = typer.Option(),
