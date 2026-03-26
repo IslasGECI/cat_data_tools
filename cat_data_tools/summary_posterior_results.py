@@ -8,12 +8,12 @@ def compute_posterior_summary(posterior_samples):
     return summary
 
 
-def compute_population_size_time_series(posterior_samples):
+def compute_population_size_time_series(posterior_samples, effort_captures_df):
     population_size_columns = [
         column for column in posterior_samples.columns if column.startswith("N.")
     ]
     population_size = posterior_samples[population_size_columns].median(axis=0)
-    return {"population_size": population_size, "Date": []}
+    return {"population_size": population_size, "Date": effort_captures_df.Fecha.to_list()}
 
 
 def compute_critical_effort(posterior_samples):
