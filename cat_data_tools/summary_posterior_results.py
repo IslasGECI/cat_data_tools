@@ -1,9 +1,10 @@
-def compute_posterior_summary(posterior_samples):
+def compute_posterior_summary(posterior_samples, effort_captures_df):
     summary = {
         "critical_effort": compute_critical_effort(posterior_samples),
         "N0": compute_N0(posterior_samples),
         "r": compute_birth_rate(posterior_samples),
         "q": compute_catchability(posterior_samples),
+        "time_series": compute_population_size_time_series(posterior_samples, effort_captures_df),
     }
     return summary
 
