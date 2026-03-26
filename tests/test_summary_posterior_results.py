@@ -19,11 +19,18 @@ def test_compute_posterior_summary():
 
 
 def test_compute_population_size_time_series():
-    obtained = compute_population_size_time_series(posterior_samples)
+    expected_series_length = 35
+    dates = (
+        pd.date_range(start="2024-01-01", periods=expected_series_length)
+        .strftime("%Y-%m-%d")
+        .tolist()
+    )
+    effort_captures_df = pd.DataFrame({"Fecha": dates})
+    obtained = compute_population_size_time_series(posterior_samples, effort_captures_df)
     expected_keys = ["population_size", "Date"]
     assert set(obtained.keys()) == set(expected_keys)
-    expected_series_length = 35
     assert len(obtained["population_size"]) == expected_series_length
+    assert len(obtained["Date"]) == expected_series_length
 
 
 def test_compute_critical_effort():
