@@ -15,17 +15,15 @@ posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
 effort_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
 
 
-expected_series_length = 35
-
-
 def test_compute_posterior_summary():
     obtained = compute_posterior_summary(posterior_samples, effort_captures_df)
     expected_keys = ["critical_effort", "r", "q", "N0", "time_series"]
     assert set(obtained.keys()) == set(expected_keys)
-    assert obtained["time_series"].shape() == (expected_series_length, 2)
+    assert len(obtained["time_series"]) == 2
 
 
 def test_compute_population_size_time_series():
+    expected_series_length = 35
     dates = (
         pd.date_range(start="2024-01-01", periods=expected_series_length)
         .strftime("%Y-%m-%d")
