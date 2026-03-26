@@ -31,6 +31,7 @@ def test_compute_population_size_time_series():
     assert set(obtained.keys()) == set(expected_keys)
     assert len(obtained["population_size"]) == expected_series_length
     assert len(obtained["Date"]) == expected_series_length
+    assert isinstance(obtained["population_size"], list)
 
 
 def test_compute_critical_effort():
