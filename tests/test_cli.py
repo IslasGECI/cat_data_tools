@@ -142,19 +142,22 @@ def test_write_trap_daily_status():
 
 
 def test_write_posterior_samples_summary():
-    command = "write-posterior-samples-summary"
+    command = "xxwrite-posterior-samples-summary"
     assert_cli_help(command)
 
     output_path = "tests/posterior_samples_summary.json"
     gtt.if_exist_remove(output_path)
 
     posterior_results_path = "tests/data/posterior_results.csv"
+    effort_captures_path = "tests/data/monthly_effort_captures_for_tests.csv"
     result = runner.invoke(
         app,
         [
             command,
             "--posterior-results-path",
             posterior_results_path,
+            "--effort-captures-path",
+            effort_captures_path,
             "--output-path",
             output_path,
         ],

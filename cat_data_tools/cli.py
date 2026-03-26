@@ -88,6 +88,7 @@ def write_posterior_samples_summary(
     xxwrite_posterior_samples_summary(posterior_results_path, effort_captures_path, output_path)
 
 
+@app.command()
 def xxwrite_posterior_samples_summary(
     posterior_results_path: str = typer.Option(),
     effort_captures_path: str = typer.Option(),
