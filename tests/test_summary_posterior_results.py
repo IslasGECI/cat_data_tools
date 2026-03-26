@@ -15,11 +15,14 @@ posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
 effort_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
 
 
+expected_time_series_keys = ["population_size", "Date", "Births", "Captures"]
+
+
 def test_compute_posterior_summary():
     obtained = compute_posterior_summary(posterior_samples, effort_captures_df)
     expected_keys = ["critical_effort", "r", "q", "N0", "time_series"]
     assert set(obtained.keys()) == set(expected_keys)
-    assert len(obtained["time_series"]) == 2
+    assert set(obtained["time_series"].keys()) == set(expected_time_series_keys)
 
 
 def test_compute_population_size_time_series():
@@ -30,8 +33,6 @@ def test_compute_population_size_time_series():
         .tolist()
     )
     obtained = compute_population_size_time_series(posterior_samples, effort_captures_df)
-    expected_keys = ["population_size", "Date", "Births", "Captures"]
-    assert set(obtained.keys()) == set(expected_keys)
     assert len(obtained["population_size"]) == expected_series_length
     assert len(obtained["Date"]) == expected_series_length
     assert isinstance(obtained["population_size"], list)
