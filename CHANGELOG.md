@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.2.0] - 2026-03-26
+- CLI command `write-posterior-samples-summary`. This function receives the posterior samples of `eradications_stan` model and writes a summary of the samples in a json file.
+
 ## [1.1.0] - 2026-03-24
 ### Added
 - CLI command `write-trap-check-log`. This command receives a splitted daily positions and returns only the list of traps checked.
