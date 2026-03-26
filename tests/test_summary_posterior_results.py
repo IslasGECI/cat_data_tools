@@ -29,7 +29,6 @@ def test_compute_population_size_time_series():
         .strftime("%Y-%m-%d")
         .tolist()
     )
-    effort_captures_df = pd.DataFrame({"Fecha": dates})
     obtained = compute_population_size_time_series(posterior_samples, effort_captures_df)
     expected_keys = ["population_size", "Date", "Births", "Captures"]
     assert set(obtained.keys()) == set(expected_keys)
