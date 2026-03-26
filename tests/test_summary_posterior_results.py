@@ -27,11 +27,6 @@ def test_compute_posterior_summary():
 
 def test_compute_population_size_time_series():
     expected_series_length = 35
-    dates = (
-        pd.date_range(start="2024-01-01", periods=expected_series_length)
-        .strftime("%Y-%m-%d")
-        .tolist()
-    )
     obtained = compute_population_size_time_series(posterior_samples, effort_captures_df)
     assert len(obtained["population_size"]) == expected_series_length
     assert len(obtained["Date"]) == expected_series_length

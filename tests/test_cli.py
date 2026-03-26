@@ -244,7 +244,7 @@ def test_app_write_monthly_summary():
         app,
         ["version"],
     )
-    assert "1.1.0" in result.stdout
+    assert "1.2.0" in result.stdout
     assert result.exit_code == 0
 
     command = "write-monthly-summary"
