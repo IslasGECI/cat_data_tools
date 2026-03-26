@@ -22,6 +22,8 @@ def test_compute_population_size_time_series():
     obtained = compute_population_size_time_series(posterior_samples)
     expected_keys = ["population_size", "Date"]
     assert set(obtained.keys()) == set(expected_keys)
+    expected_series_length = 35
+    assert len(obtained["population_size"]) == expected_series_length
 
 
 def test_compute_critical_effort():
