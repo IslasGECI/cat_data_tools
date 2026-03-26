@@ -14,9 +14,13 @@ def compute_population_size_time_series(posterior_samples, effort_captures_df):
         column for column in posterior_samples.columns if column.startswith("N.")
     ]
     population_size = posterior_samples[population_size_columns].median(axis=0)
+    birth_rate = compute_birth_rate(posterior_samples)
+    births = population_size * birth_rate
     return {
         "population_size": population_size.to_list(),
         "Date": effort_captures_df.Fecha.to_list(),
+        "Births": births.to_list(),
+        "Captures": effort_captures_df.Capturas.to_list(),
     }
 
 
