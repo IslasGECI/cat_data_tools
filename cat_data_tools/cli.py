@@ -18,6 +18,7 @@ import cat_data_tools as cdt
 import pandas as pd
 import json
 import typer
+import warnings
 
 app = typer.Typer()
 
@@ -144,8 +145,22 @@ def write_monthly_summary(
     monthly_data.to_csv(output_path, index=False, na_rep="NA")
 
 
-@app.command(help="Filter monthly summary between years")
+@app.command(help="Filter monthly summary between years", deprecated=True)
 def filter_monthly_summary(
+    monthly_data_path: str = "",
+    output_path: str = "",
+    initial_year: int = 2014,
+    final_year: int = 2019,
+):
+    warnings.warn("Use write-filtered-monthly-summary-between-years instead", DeprecationWarning)
+
+    dataframe = pd.read_csv(monthly_data_path)
+    filtered_dataframe = filter_data_between_years(dataframe, initial_year, final_year)
+    filtered_dataframe.to_csv(output_path, index=False, na_rep="NA")
+
+
+@app.command(help="Filter monthly summary between years")
+def write_filtered_monthly_summary_between_years(
     monthly_data_path: str = "",
     output_path: str = "",
     initial_year: int = 2014,

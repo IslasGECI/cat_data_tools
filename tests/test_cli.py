@@ -307,8 +307,8 @@ def test_update_status_traps():
     gtt.assert_exist(output_path)
 
 
-def test_app_filter_monthly_summary():
-    command = "filter-monthly-summary"
+def test_app_write_filtered_monthly_summary_between_years():
+    command = "write-filtered-monthly-summary-between-years"
     result = assert_cli_help(command)
     assert "XXXX" not in result.stdout
     assert "[default: 2014]" in result.stdout
@@ -318,7 +318,7 @@ def test_app_filter_monthly_summary():
     result = runner.invoke(
         app,
         [
-            "filter-monthly-summary",
+            command,
             "--monthly-data-path",
             "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv",
             "--initial-year",
