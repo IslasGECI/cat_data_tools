@@ -4,6 +4,7 @@ from cat_data_tools import (
     filter_data_between_years,
     filter_monthly_summary,
 )
+from cat_data_tools.filter_data_between_years import filter_between_dates
 
 import os
 import pandas as pd
@@ -12,6 +13,15 @@ import subprocess
 monthly_data = pd.read_csv("tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv")
 year = 2016
 expected = pd.read_csv("tests/data/filtered_data_after_2016.csv")
+
+
+def test_filter_between_dates():
+    initial_date = "2016-03-01"
+    final_date = "2018-08-01"
+    date_column_name = "Fecha"
+    obtained = filter_between_dates(monthly_data, initial_date, final_date, date_column_name)
+    expected_len = 21
+    assert len(obtained) == expected_len
 
 
 def test_filter_data_after_year():
