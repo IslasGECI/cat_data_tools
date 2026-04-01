@@ -10,7 +10,7 @@ from cat_data_tools.calculate_effort_and_captures import calculate_effort_and_ca
 from cat_data_tools.detect_status_change import (
     compute_trap_check_log,
 )
-from cat_data_tools.filter_data_between_years import filter_data_between_years
+from cat_data_tools.filter_data_between_years import filter_data_between_years, filter_between_dates
 from cat_data_tools.summary_posterior_results import compute_posterior_summary
 from cat_data_tools.update_status_traps import _update_status_traps
 from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
@@ -169,6 +169,19 @@ def write_filtered_monthly_summary_between_years(
     dataframe = pd.read_csv(monthly_data_path)
     filtered_dataframe = filter_data_between_years(dataframe, initial_year, final_year)
     filtered_dataframe.to_csv(output_path, index=False, na_rep="NA")
+
+
+@app.command(help="Filter data between given dates.")
+def write_filtered_data_between_dates(
+    data_path: str = "",
+    output_path: str = "",
+    initial_date: str = "",
+    final_date: str = "",
+):
+    df = pd.read_csv(data_path)
+    date_column_name = "Fecha"
+    filtered_data = filter_between_dates(df, initial_date, final_date, date_column_name)
+    filtered_data.to_csv(output_path, index=False)
 
 
 @app.command()
