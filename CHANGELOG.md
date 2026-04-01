@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.3.0] - 2026-04-01
+### Added
+- Deprecation warning for `filter-monthly-summary`.
+- CLI command `write-filtered-monthly-summary-between-years` to replace the previous deprecated funcion.
+- CLI command `write-filtered-data-between-dates`. Flexible function to filter data with "Fecha" as Date columns' name.
+
 ## [1.2.0] - 2026-03-26
 - CLI command `write-posterior-samples-summary`. This function receives the posterior samples of `eradications_stan` model and writes a summary of the samples in a json file.
 
