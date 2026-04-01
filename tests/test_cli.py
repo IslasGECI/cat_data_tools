@@ -330,6 +330,9 @@ def test_app_filter_monthly_summary():
         ],
     )
     assert result.exit_code == 0
+    obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
+    assert ",NA" in obtained
+    assert ",Esfuerzo" not in obtained
     os.remove(output_path)
 
 
