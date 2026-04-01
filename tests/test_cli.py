@@ -8,6 +8,42 @@ import subprocess
 runner = CliRunner()
 
 
+def test_write_filtered_data_between_dates():
+    command = "write-filtered-data-between-dates"
+    result = runner.invoke(
+        app,
+        [command, "--help"],
+    )
+    assert "XX" not in result.stdout
+    assert result.exit_code == 0
+    data_path = "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv"
+    initial_date = "2016-03-01"
+    final_date = "2018-08-01"
+    output_path = "tests/data/filtered_data.csv"
+    gtt.if_exist_remove(output_path)
+
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--data-path",
+            data_path,
+            "--initial-date",
+            initial_date,
+            "--final-date",
+            final_date,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+    obtained = pd.read_csv(output_path)
+    original = pd.read_csv(data_path)
+    assert len(obtained) < len(original)
+    gtt.if_exist_remove(output_path)
+
+
 def test_write_trap_check_log():
     command = "write-trap-check-log"
     assert_cli_help(command)
