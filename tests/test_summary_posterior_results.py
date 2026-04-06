@@ -37,7 +37,14 @@ def test_compute_population_size_time_series():
     assert len(obtained["population_size"]) == expected_series_length
     assert len(obtained["Date"]) == expected_series_length
     assert isinstance(obtained["population_size"], list)
-    assert all([row["population_size"] < row["population_size_percentile_95"] for row in obtained])
+    assert all(
+        [
+            row1 < row2
+            for row1, row2 in zip(
+                obtained["population_size"], obtained["population_size_percentile_95"]
+            )
+        ]
+    )
 
 
 def test_compute_critical_effort():
