@@ -18,6 +18,7 @@ def compute_population_size_time_series(posterior_samples, effort_captures_df):
     births = population_size * birth_rate
     return {
         "population_size": population_size.to_list(),
+        "population_size_percentile_95": population_size.to_list(),
         "Date": effort_captures_df.Fecha.to_list(),
         "Births": births.to_list(),
         "Captures": effort_captures_df.Capturas.to_list(),
