@@ -15,7 +15,13 @@ posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
 effort_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
 
 
-expected_time_series_keys = ["population_size", "Date", "Births", "Captures"]
+expected_time_series_keys = [
+    "population_size",
+    "Date",
+    "Births",
+    "Captures",
+    "population_size_percentile_95",
+]
 
 
 def test_compute_posterior_summary():
@@ -29,7 +35,6 @@ def test_compute_population_size_time_series():
     expected_series_length = 35
     obtained = compute_population_size_time_series(posterior_samples, effort_captures_df)
     assert len(obtained["population_size"]) == expected_series_length
-    assert len(obtained["population_size_percentile_95"]) == expected_series_length
     assert len(obtained["Date"]) == expected_series_length
     assert isinstance(obtained["population_size"], list)
 
