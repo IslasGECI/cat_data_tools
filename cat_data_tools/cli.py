@@ -131,7 +131,10 @@ def join_traps_ids_and_daily_status(
 @app.command(help="Write monthly summary from weekly summary without trappers")
 def write_monthly_summary_without_trappers(weekly_data_path: str = "", output_path: str = ""):
     effort_data = pd.read_csv(weekly_data_path)
-    monthly_data = summarize_effort_captures(effort_data)
+    effort_data_adapted = effort_data.rename(
+        columns={"Date": "Fecha", "Total_individuals": "Capturas", "Effort": "Esfuerzo"}
+    )
+    monthly_data = summarize_effort_captures(effort_data_adapted)
     monthly_data.to_csv(output_path, index=False)
 
 
