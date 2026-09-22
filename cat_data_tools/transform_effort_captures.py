@@ -7,3 +7,7 @@ def transform_effort_captures_to_dict(df):
     )
     effort_captures_dict["T"] = len(df)
     return effort_captures_dict
+
+
+def transform_effort_and_captures_from_cameras_and_traps_to_dict(df_traps, df_cameras):
+    pass
