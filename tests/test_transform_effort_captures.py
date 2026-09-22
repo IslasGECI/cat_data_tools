@@ -18,3 +18,5 @@ def test_transform_effort_captures_to_dict():
 
 def test_transform_effort_and_captures_from_cameras_and_traps_to_dict():
     obtained = transform_effort_and_captures_from_cameras_and_traps_to_dict(df_traps, df_cameras)
+    expected_keys = ["T", "traps_effort", "captures", "cameras_effort", "detections"]
+    assert set(obtained.keys()) == set(expected_keys)
