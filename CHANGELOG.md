@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- CLI command `write-monthly-summary-without-trappers` now accepts English column names (`Date`, `Total_individuals`, `Effort`) and adapts them to Spanish before summarizing.
 
 ### Fixed
 
