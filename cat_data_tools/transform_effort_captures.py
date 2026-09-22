@@ -11,10 +11,10 @@ def transform_effort_captures_to_dict(df, effort="esfuerzo", captures="capturas"
 
 def transform_effort_and_captures_from_cameras_and_traps_to_dict(df_traps, df_cameras):
     df_traps = setup_effort_captures_df_for_combination(df_traps, "traps_effort", "captures")
+    df_cameras = setup_effort_captures_df_for_combination(
+        df_cameras, "cameras_effort", "detections"
+    )
 
-    df_cameras["Esfuerzo"] = df_cameras.Esfuerzo.replace(0, 1)
-    df_cameras.set_index("Fecha", inplace=True)
-    df_cameras = df_cameras.rename(columns={"Esfuerzo": "cameras_effort", "Capturas": "detections"})
     combined = df_traps.join(df_cameras, how="inner")
     combined_dict = combined.to_dict(orient="list")
     combined_dict["T"] = len(combined)
