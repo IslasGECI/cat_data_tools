@@ -320,7 +320,23 @@ def test_app_write_monthly_summary_without_trappers():
         ],
     )
     assert result.exit_code == 0
+    gtt.assert_exist(output_path)
     os.remove(output_path)
+
+    output_path = "tests/data/cameras_monthly_summary.csv"
+    result = runner.invoke(
+        app,
+        [
+            "write-monthly-summary-without-trappers",
+            "--weekly-data-path",
+            "tests/data/cameras_daily_summary.csv",
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+    gtt.if_exist_remove(output_path)
 
 
 def test_update_status_traps():
