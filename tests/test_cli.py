@@ -202,6 +202,34 @@ def test_write_posterior_samples_summary():
     gtt.assert_exist(output_path)
 
 
+def test_write_effort_captures_from_traps_and_cameras_to_json_stan():
+    command = "write-effort-captures-from-traps-and-cameras-to-json-stan"
+    assert_cli_help(command)
+
+    output_path = "tests/combined_effort_captures.json"
+    gtt.if_exist_remove(output_path)
+
+    effort_captures_from_traps_path = (
+        "tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv"
+    )
+    effort_captures_from_cameras_path = "tests/data/monthly_cameras_effort_and_captures.csv"
+    result = runner.invoke(
+        app,
+        [
+            command,
+            "--traps-effort-captures-path",
+            effort_captures_from_traps_path,
+            "--cameras-effort-captures-path",
+            effort_captures_from_cameras_path,
+            "--output-path",
+            output_path,
+        ],
+    )
+    assert result.exit_code == 0
+    gtt.assert_exist(output_path)
+    os.remove(output_path)
+
+
 def test_write_effort_captures_as_json():
     command = "write-effort-captures-as-json"
     assert_cli_help(command)
