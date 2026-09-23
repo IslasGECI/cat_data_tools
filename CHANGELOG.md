@@ -8,13 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- CLI command `write-monthly-summary-without-trappers` now accepts English column names (`Date`, `Total_individuals`, `Effort`) and adapts them to Spanish before summarizing.
 
 ### Fixed
 
 ### Changed
 
 ### Removed
+
+## [1.5.0] - 2026-09-23
+### Added
+- CLI command `write-effort-captures-from-traps-and-cameras-to-json-stan` to combine traps and cameras effort/captures summaries and write them as a JSON dictionary ready for Stan (`T`, `traps_effort`, `captures`, `cameras_effort`, `detections`).
+- CLI command `write-monthly-summary-without-trappers` now accepts English column names (`Date`, `Total_individuals`, `Effort`) and adapts them to Spanish before summarizing.
 
 ## [1.4.0] - 2026-04-06
 ### Added
