@@ -1,7 +1,6 @@
 def transform_effort_captures_to_dict(df, effort="esfuerzo", captures="capturas"):
     df_setup = setup_effort_captures_df_for_combination(df, effort, captures)
-    effort_captures_dict = df_setup.to_dict(orient="list")
-    effort_captures_dict["T"] = len(df_setup)
+    effort_captures_dict = convert_dataframe_to_stan_dictonary(df_setup)
     return effort_captures_dict
 
 
@@ -14,9 +13,14 @@ def transform_effort_and_captures_from_cameras_and_traps_to_dict(df_traps, df_ca
     )
 
     combined = df_traps_to_combine.join(df_cameras_to_combine, how="inner")
-    combined_dict = combined.to_dict(orient="list")
-    combined_dict["T"] = len(combined)
+    combined_dict = convert_dataframe_to_stan_dictonary(combined)
     return combined_dict
+
+
+def convert_dataframe_to_stan_dictonary(df):
+    df_dict = df.to_dict(orient="list")
+    df_dict["T"] = len(df)
+    return df_dict
 
 
 def setup_effort_captures_df_for_combination(df, effort_name, captures_name):
