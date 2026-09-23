@@ -13,7 +13,10 @@ from cat_data_tools.detect_status_change import (
 from cat_data_tools.filter_data_between_years import filter_data_between_years, filter_between_dates
 from cat_data_tools.summary_posterior_results import compute_posterior_summary
 from cat_data_tools.update_status_traps import _update_status_traps
-from cat_data_tools.transform_effort_captures import transform_effort_captures_to_dict
+from cat_data_tools.transform_effort_captures import (
+    transform_effort_captures_to_dict,
+    transform_effort_and_captures_from_cameras_and_traps_to_dict,
+)
 import cat_data_tools as cdt
 import pandas as pd
 import json
@@ -91,6 +94,20 @@ def write_posterior_samples_summary(
     effort_captures_df = pd.read_csv(effort_captures_path)
     posterior_results_dict = compute_posterior_summary(posterior_results_df, effort_captures_df)
     write_dict_as_json(posterior_results_dict, output_path)
+
+
+@app.command()
+def write_effort_captures_from_traps_and_cameras_to_json_stan(
+    traps_effort_captures_path: str = typer.Option(),
+    cameras_effort_captures_path: str = typer.Option(),
+    output_path: str = typer.Option(),
+):
+    traps_effort_captures_df = pd.read_csv(traps_effort_captures_path)
+    cameras_effort_captures_df = pd.read_csv(cameras_effort_captures_path)
+    combined_effort_captures_dict = transform_effort_and_captures_from_cameras_and_traps_to_dict(
+        traps_effort_captures_df, cameras_effort_captures_df
+    )
+    write_dict_as_json(combined_effort_captures_dict, output_path)
 
 
 @app.command()
