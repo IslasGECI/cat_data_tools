@@ -5,15 +5,35 @@ from cat_data_tools.summary_posterior_results import (
     compute_N0,
     compute_population_size_time_series,
     compute_posterior_summary,
+    compute_posterior_summary_for_cameras_and_traps,
 )
 import pandas as pd
 import pytest
 
+
+def test_compute_posterior_summary_for_cameras_and_traps():
+    posterior_samples = pd.read_csv("tests/data/posterior_results_traps_and_cameras.csv")
+    traps_effort_and_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
+    cameras_effort_and_captures_df = pd.read_csv("tests/data/cameras_monthly_effort_detections.csv")
+    obtained = compute_posterior_summary_for_cameras_and_traps(
+        posterior_samples, traps_effort_and_captures_df, cameras_effort_and_captures_df
+    )
+    expected_keys = ["critical_effort", "r", "traps_q", "cameras_q", "N0", "time_series"]
+    assert set(obtained.keys()) == set(expected_keys)
+    expected_time_series_keys = [
+        "population_size",
+        "Date",
+        "Births",
+        "Captures",
+        "Detections",
+        "population_size_percentile_95",
+    ]
+
+    assert set(obtained["time_series"].keys()) == set(expected_time_series_keys)
+
+
 posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
-
-
 effort_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
-
 
 expected_time_series_keys = [
     "population_size",
