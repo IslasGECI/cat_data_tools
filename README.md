@@ -6,39 +6,45 @@
 ![commits](https://img.shields.io/github/commit-activity/y/IslasGECI/cat_data_tools)
 ![GitHub contributors](https://img.shields.io/github/contributors/IslasGECI/cat_data_tools)
 
-## Overview
+Turn the field records of cat-trapping and camera campaigns into tidy summaries of effort, captures and population size.
 
-Python module with tools to process cat data.
+## What it does
 
+- Rebuilds the daily status of every trap from the field check logs.
+- Summarises effort and captures by day and zone, and turns weekly records into monthly totals, with or without the number of trappers.
+- Filters summaries by year or by a range of dates.
+- Keeps the trap master list (type and order) consistent over time.
+- Adds latitude and longitude to the traps checked each week, so captures can be mapped.
+- Prepares the numbers the population model needs as a JSON file, ready to run.
 
-# Adaptadores
-Esta nota está inspirada en el tema de arquitectura hexagonal.
-La necesidad nació de la petición de que nos hizo el equipo de trampeo por tener las coordenadas de las trampas con capturas.
-En el estado actual no tenemos las coordenadas, pero nos hicieron llegar las coordenadas en un archivo GPX.
-Ese archivo lo cambiamos a formato GeoJSON y de ahí a csv. 
-La promesa es que ese archivo ya no nos lo van a mandar.
-El próximo formato serán archivos de mapsource.
+## Usage
 
-## ¿Qué hicimos?
-Sabemos que las próximas coordenadas vendrán de un archivo distinto. 
-Así que decidimos que un adaptador decida cómo generar el DataFrame a partir de diferentes fuentes de datos.
-El adaptador nos regresará objetos que transforan de la fuente de datos a DataFrame.
-El nombre del archivo fuente es el criterio para saber el tipo de objeto que nos entregará el DataFrame que necesitamos.
+Run `cat-data-tools --help` to list every task, or `cat-data-tools <task> --help` to see what a task needs.
 
-## ¿Dónde lo hicimos?
-Trabajamos en el repositorio [`cat_data_tools`](https://github.com/IslasGECI/cat_data_tools). 
-¿Cuál es el objetivo de este repositorio?
-¿Dónde utilizamos este repositorio?
-[Aquí](https://github.com/IslasGECI/cat_data_tools/blob/develop/cat_data_tools/adapters.py) podemos ver la implementación.
+For example, to build a monthly summary that includes the number of trappers:
 
-## ¿Qué hace el adaptador?
-La función `Adapter_for_path_to_dataframe()` nos entrega un objeto del tipo `Adapter_from_path` (creo que podemos mejorar el nombre. Tal vez transformer en lugar de adapter).
-Estos objetos tienen un método `get_dataframe()` encargado de entregar el DataFrame con las columnas correctas.
-La única razón para cambiar a la función `Adapter_for_path_to_dataframe()` es que agreguemos a una clase "`transformer`" nueva.
-Las clases `transformer` cambian de manera independiente, cada una dependen del archivo con el que las inicializamos.
-La razón por la que podrían cambiar todas las clases `transformer` es que las columnas de salida cambien de nombre.  
+    cat-data-tools write-monthly-summary \
+        --weekly-data-path weekly.csv \
+        --monthly-trappers-path trappers.csv \
+        --output-path monthly.csv
 
-## ¿Qué logramos?
-El cambio que nos prometieron que vendría lo tenemos encapsulado.
-Cuando la fuente de datos sea distinta tenemos que escribir una nueva clase que cumpla con la misma interfaz. ¿Podemos decir lo mismo sin usar la palabra interfaz?
-Además tendremos que agregar un opción en el diccionario [`choice`](https://github.com/IslasGECI/cat_data_tools/blob/develop/cat_data_tools/adapters.py#L6).
+Every task reads one or more CSV files and writes a single output file. Dates go in a column called `Fecha`, and effort and captures are expected as `Esfuerzo` and `Capturas`. A few tasks also accept English headers (`Date`, `Effort`, `Total_individuals`), as their help explains.
+
+## Before you start
+
+- The CSV tables you want to process. No database, account or key is needed.
+- Docker (recommended) or Python 3.9 or newer.
+
+## Run the project
+
+### With Docker (recommended)
+
+    docker build --tag islasgeci/cat_data_tools:latest .
+    docker compose run --rm islasgeci
+
+The project folder is mounted at `/workdir`, and `cat-data-tools` is ready to use inside the container.
+
+### With Python
+
+    pip install --editable .
+    cat-data-tools --help
