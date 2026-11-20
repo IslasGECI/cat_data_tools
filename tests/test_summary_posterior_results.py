@@ -2,6 +2,7 @@ from cat_data_tools.summary_posterior_results import (
     compute_birth_rate,
     compute_catchability,
     compute_critical_effort,
+    compute_traps_critical_effort,
     compute_N0,
     compute_population_size_time_series,
     compute_posterior_summary,
@@ -10,13 +11,18 @@ from cat_data_tools.summary_posterior_results import (
 import pandas as pd
 import pytest
 
+posterior_samples_traps_and_cameras = pd.read_csv(
+    "tests/data/posterior_results_traps_and_cameras.csv"
+)
+
 
 def test_compute_posterior_summary_for_cameras_and_traps():
-    posterior_samples = pd.read_csv("tests/data/posterior_results_traps_and_cameras.csv")
     traps_effort_and_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
     cameras_effort_and_captures_df = pd.read_csv("tests/data/cameras_monthly_effort_detections.csv")
     obtained = compute_posterior_summary_for_cameras_and_traps(
-        posterior_samples, traps_effort_and_captures_df, cameras_effort_and_captures_df
+        posterior_samples_traps_and_cameras,
+        traps_effort_and_captures_df,
+        cameras_effort_and_captures_df,
     )
     expected_keys = ["critical_effort", "r", "traps_q", "cameras_q", "N0", "time_series"]
     assert set(obtained.keys()) == set(expected_keys)
@@ -69,6 +75,13 @@ def test_compute_population_size_time_series():
 
 def test_compute_critical_effort():
     obtained = compute_critical_effort(posterior_samples)
+    assert isinstance(obtained, int)
+    expected_critical_effort = 10185
+    assert obtained == expected_critical_effort
+
+
+def test_compute_critical_effort():
+    obtained = compute_traps_critical_effort(posterior_samples_traps_and_cameras)
     assert isinstance(obtained, int)
     expected_critical_effort = 10185
     assert obtained == expected_critical_effort
