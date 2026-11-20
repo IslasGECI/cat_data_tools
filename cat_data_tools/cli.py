@@ -17,7 +17,11 @@ from cat_data_tools.transform_effort_captures import (
     transform_effort_captures_to_dict,
     transform_effort_and_captures_from_cameras_and_traps_to_dict,
 )
-import cat_data_tools as cdt
+from cat_data_tools.trap_status_list import (
+    add_lat_lon_to_active_traps_of_the_week,
+    join_trap_ids_and_daily_status,
+)
+from cat_data_tools import __version__
 import pandas as pd
 import json
 import typer
@@ -131,7 +135,7 @@ def join_traps_positions_and_active_traps_by_id_and_line(
 ):
     active_traps = pd.read_csv(active_traps_path)
     postions_with_lat_lon = pd.read_csv(traps_positions_path)
-    joined_df = cdt.add_lat_lon_to_active_traps_of_the_week(active_traps, postions_with_lat_lon)
+    joined_df = add_lat_lon_to_active_traps_of_the_week(active_traps, postions_with_lat_lon)
     joined_df.to_csv(output_path, index=False)
 
 
@@ -141,7 +145,7 @@ def join_traps_ids_and_daily_status(
 ):
     trap_daily_status = pd.read_csv(trap_daily_status_path)
     traps_ids = pd.read_csv(traps_ids_path)
-    joined_df = cdt.join_trap_ids_and_daily_status(trap_daily_status, traps_ids)
+    joined_df = join_trap_ids_and_daily_status(trap_daily_status, traps_ids)
     joined_df.to_csv(output_path, index=False)
 
 
@@ -213,4 +217,4 @@ def update_status_traps(data_path: str = typer.Option(), output_path: str = type
 
 @app.command()
 def version():
-    print(cdt.__version__)
+    print(__version__)
