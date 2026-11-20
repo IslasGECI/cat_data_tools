@@ -80,7 +80,7 @@ def test_compute_critical_effort():
     assert obtained == expected_critical_effort
 
 
-def test_compute_critical_effort():
+def test_compute_traps_critical_effort():
     obtained = compute_traps_critical_effort(posterior_samples_traps_and_cameras)
     assert isinstance(obtained, int)
     expected_critical_effort = 10185
