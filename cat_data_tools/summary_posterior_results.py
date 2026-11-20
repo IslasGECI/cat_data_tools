@@ -1,3 +1,20 @@
+def compute_posterior_summary_for_cameras_and_traps(
+    posterior_samples, traps_effort_and_captures_df, cameras_effort_and_captures_df
+):
+    summary = {
+        "critical_effort": "NA",
+        "N0": compute_N0(posterior_samples),
+        "r": compute_birth_rate(posterior_samples),
+        "traps_q": "NA",
+        "cameras_q": "NA",
+        "time_series": compute_population_size_time_series(
+            posterior_samples, traps_effort_and_captures_df
+        ),
+    }
+    summary["time_series"].update({"Detections": cameras_effort_and_captures_df.Capturas.to_list()})
+    return summary
+
+
 def compute_posterior_summary(posterior_samples, effort_captures_df):
     summary = {
         "critical_effort": compute_critical_effort(posterior_samples),
