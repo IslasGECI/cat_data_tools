@@ -172,6 +172,19 @@ Errors: `KeyError` when a required column is missing.
 
 Notes: rows are matched on `Fecha` and unmatched dates are dropped; zero effort is replaced with `1`; `T` is the number of matched dates.
 
+### transform_effort_captures_to_dict(df, effort="esfuerzo", captures="capturas")
+Python API, imported from the package root (`from cat_data_tools import transform_effort_captures_to_dict`): build the same Stan-ready dictionary as `write-effort-captures-as-json`, without writing a file.
+
+Parameters:
+
+- `df` — DataFrame with `Fecha`, `Esfuerzo` and `Capturas`.
+- `effort` — key name for the effort values in the returned dictionary, default `esfuerzo`.
+- `captures` — key name for the captures values in the returned dictionary, default `capturas`.
+
+Returns: a dictionary with `T` and the effort and captures lists under the names given by `effort` and `captures`.
+
+Notes: zero effort is replaced with `1`; `T` is the number of rows; the input DataFrame is not modified.
+
 ### compute_posterior_summary_for_cameras_and_traps(posterior_samples, traps_effort_and_captures_df, cameras_effort_and_captures_df)
 Python API, imported from the package root (`from cat_data_tools import compute_posterior_summary_for_cameras_and_traps`): summarise the posterior samples of the traps-and-cameras model.
 
