@@ -1,6 +1,6 @@
 [project]
 name = "cat-data-tools"
-version = "1.5.0"
+version = "1.6.0"
 
 [build-system]
 requires = ["flit_core >=2,<4"]

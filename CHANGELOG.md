@@ -8,13 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Exported function `compute_posterior_summary_for_cameras_and_traps()` to summarise the posterior samples of the traps-and-cameras model: `critical_effort` from `traps_q`, the median `traps_q` and `cameras_q`, and the population size time series extended with camera `Detections`.
 
 ### Fixed
 
 ### Changed
 
+### Deprecated
+
 ### Removed
+
+## [1.6.0] - 2026-11-23
+
+### Added
+- Exported function `compute_posterior_summary_for_cameras_and_traps()` to summarise the posterior samples of the traps-and-cameras model: `critical_effort` from `traps_q`, the median `traps_q` and `cameras_q`, and the population size time series extended with camera `Detections`.
+- Exported function `compute_posterior_summary_for_traps()` to summarise the posterior samples of the traps-only model: `critical_effort` and the median `traps_q` from the `traps_q` column, with the population size time series.
+
+### Deprecated
+- CLI commands `write-posterior-samples-summary`, `write-effort-captures-from-traps-and-cameras-to-json-stan` and `write-effort-captures-as-json` now emit a deprecation warning; their functionality moves to internals of the `eradication-stan` package.
 
 ## [1.5.0] - 2026-09-23
 ### Added
