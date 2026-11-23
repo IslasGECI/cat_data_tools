@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Exported function `compute_posterior_summary_for_cameras_and_traps()` to summarise the posterior samples of the traps-and-cameras model: `critical_effort` from `traps_q`, the median `traps_q` and `cameras_q`, and the population size time series extended with camera `Detections`.
 
 ### Fixed
 
