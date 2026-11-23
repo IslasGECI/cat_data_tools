@@ -39,16 +39,20 @@ Notes: each record is carried forward for `days_active` days. Guadalupe keeps re
 ### cli write-posterior-samples-summary --posterior-results-path --effort-captures-path --output-path
 Summarise the posterior samples of the population model into one JSON file.
 
+Deprecated since 1.6.0: its functionality moves to the internals of the `eradication-stan` package.
+
 - `--posterior-results-path` — CSV of posterior samples with `N0`, `r`, `q` and `N.*` columns.
 - `--effort-captures-path` — CSV with `Fecha` and `Capturas`.
 - `--output-path` — JSON to write.
 
 Returns: a JSON object with `critical_effort`, `N0`, `r`, `q` and `time_series`; `time_series` contains `population_size`, `population_size_percentile_95`, `Date`, `Births` and `Captures`.
 
-Notes: `critical_effort` is an integer taken from the 90th percentile of `r/q`; `N0` is the median rounded to an integer; `r` and `q` are medians.
+Notes: `critical_effort` is an integer taken from the 90th percentile of `r/q`; `N0` is the median rounded to an integer; `r` and `q` are medians. Emits a deprecation warning on every run.
 
 ### cli write-effort-captures-from-traps-and-cameras-to-json-stan --traps-effort-captures-path --cameras-effort-captures-path --output-path
 Write a single Stan-ready JSON combining trap and camera effort and captures.
+
+Deprecated since 1.6.0: its functionality moves to the internals of the `eradication-stan` package.
 
 - `--traps-effort-captures-path` — CSV with `Fecha`, `Esfuerzo` and `Capturas`.
 - `--cameras-effort-captures-path` — CSV with `Fecha`, `Esfuerzo` and `Capturas`.
@@ -56,17 +60,19 @@ Write a single Stan-ready JSON combining trap and camera effort and captures.
 
 Returns: a JSON object with `T`, `traps_effort`, `captures`, `cameras_effort` and `detections`.
 
-Notes: rows are matched on `Fecha` and unmatched dates are dropped; zero effort is replaced with `1`; `T` is the number of matched dates.
+Notes: rows are matched on `Fecha` and unmatched dates are dropped; zero effort is replaced with `1`; `T` is the number of matched dates. Emits a deprecation warning on every run.
 
 ### cli write-effort-captures-as-json --effort-captures-path --output-path
 Write a Stan-ready JSON from a single effort and captures table.
+
+Deprecated since 1.6.0: its functionality moves to the internals of the `eradication-stan` package.
 
 - `--effort-captures-path` — CSV with `Fecha`, `Esfuerzo` and `Capturas`.
 - `--output-path` — JSON to write.
 
 Returns: a JSON object with `T`, `esfuerzo` and `capturas`.
 
-Notes: zero effort is replaced with `1`; `T` is the number of rows.
+Notes: zero effort is replaced with `1`; `T` is the number of rows. Emits a deprecation warning on every run.
 
 ### cli join-traps-positions-and-active-traps-by-id-and-line --active-traps-path --traps-positions-path --output-path
 Add coordinates to the traps checked during the week.
@@ -150,7 +156,7 @@ Returns: the first appearance of each type, id and order combination plus every 
 ### cli version
 Print the installed version of the package.
 
-Returns: the version, for example `1.5.0`.
+Returns: the version, for example `1.6.0`.
 
 ### transform_effort_and_captures_from_cameras_and_traps_to_dict(df_traps, df_cameras)
 Python API, imported from the package root (`from cat_data_tools import transform_effort_and_captures_from_cameras_and_traps_to_dict`): build the same Stan-ready dictionary as `write-effort-captures-from-traps-and-cameras-to-json-stan`, without writing a file.
@@ -165,3 +171,28 @@ Returns: a dictionary with `T`, `traps_effort`, `captures`, `cameras_effort` and
 Errors: `KeyError` when a required column is missing.
 
 Notes: rows are matched on `Fecha` and unmatched dates are dropped; zero effort is replaced with `1`; `T` is the number of matched dates.
+
+### compute_posterior_summary_for_cameras_and_traps(posterior_samples, traps_effort_and_captures_df, cameras_effort_and_captures_df)
+Python API, imported from the package root (`from cat_data_tools import compute_posterior_summary_for_cameras_and_traps`): summarise the posterior samples of the traps-and-cameras model.
+
+Parameters:
+
+- `posterior_samples` — DataFrame with `N0`, `r`, `traps_q`, `cameras_q` and `N.*` columns.
+- `traps_effort_and_captures_df` — DataFrame with `Fecha` and `Capturas`.
+- `cameras_effort_and_captures_df` — DataFrame with `Capturas`.
+
+Returns: a dictionary with `critical_effort`, `N0`, `r`, `traps_q`, `cameras_q` and `time_series`.
+
+Notes: `critical_effort` is the 90th percentile of `r / traps_q` rounded to an integer; `N0` is the median rounded to an integer; `r`, `traps_q` and `cameras_q` are medians; `time_series` contains `population_size`, `population_size_percentile_95`, `Date`, `Births`, `Captures` and `Detections`.
+
+### compute_posterior_summary_for_traps(posterior_samples, traps_effort_and_captures_df)
+Python API, imported from the package root (`from cat_data_tools import compute_posterior_summary_for_traps`): summarise the posterior samples of the traps-only model.
+
+Parameters:
+
+- `posterior_samples` — DataFrame with `N0`, `r`, `traps_q` and `N.*` columns.
+- `traps_effort_and_captures_df` — DataFrame with `Fecha` and `Capturas`.
+
+Returns: a dictionary with `critical_effort`, `N0`, `r`, `traps_q` and `time_series`.
+
+Notes: `critical_effort` is the 90th percentile of `r / traps_q` rounded to an integer; `N0` is the median rounded to an integer; `r` and `traps_q` are medians; `time_series` contains `population_size`, `population_size_percentile_95`, `Date`, `Births` and `Captures`, without `Detections`.

@@ -9,7 +9,7 @@ The public interface is the `cat-data-tools` Typer CLI (`cat_data_tools.cli:app`
 - `make install` performs an editable install with flit; `make setup` is `make clean` plus install. Python >= 3.9; runtime dependencies are only numpy, pandas and typer[all].
 - Docker is the CI path: `docker build --tag islasgeci/cat_data_tools:latest .`, then `docker compose run --rm islasgeci`. The service is named `islasgeci`, not `cat_data_tools`; `islasgeci_dev` builds `Dockerfile.dev` on top of the `latest` image and installs the OpenCode CLI.
 - Test tooling (black, flake8, mypy, mutmut, pylint, pytest) is installed by `Dockerfile`, not declared in `pyproject.toml`; `make check` needs those executables on PATH. `make check` does not run pylint; only `make linter` does.
-- CI (`.github/workflows/actions.yml`) runs only on pushes to `develop`: it builds the image, runs `make check`, `make coverage` and `make mutants`, then pushes to Docker Hub and PyPI.
+- CI (`.github/workflows/actions.yml`) runs only on pushes to `develop`, in two jobs that each build `islasgeci/cat_data_tools:latest`: one runs `make check` and `make coverage`, uploads `coverage.xml` to Codecov, force-pushes the `latest` tag, pushes the `latest` and 4-character SHA images to Docker Hub and publishes the sdist and wheel to PyPI (`skip-existing: true`); the other runs `make mutants`.
 
 ## Commands
 
@@ -26,6 +26,7 @@ The public interface is the `cat-data-tools` Typer CLI (`cat_data_tools.cli:app`
 - Trap status codes: `X` = capture, `A` = active, `R`/`RX` = checked; zone is the part of `ID` before the first `-`.
 - `write-trap-daily-status` requires `--island Socorro|Guadalupe` (Guadalupe also deduplicates on `Trapper` because positions repeat) and a JSON config with `days_active`.
 - New commands go in `cli.py` as `@app.command()` and must be added to the explicit import list in `__init__.py`; there is no wildcard import.
+- Deprecating a command means both `@app.command(deprecated=True)` (help label) and a `warnings.warn(..., DeprecationWarning)` in the body (runtime notice), as in `write_posterior_samples_summary`.
 - Release steps: bump `__version__`, add a `CHANGELOG.md` entry, and update the version string asserted in `tests/test_cli.py`. The CI workflow only touches the `latest` tag; version tags are added by hand (none exists for 1.5.0), so `git diff v1.4.0..HEAD` spans more than one release.
 
 ## Testing notes
