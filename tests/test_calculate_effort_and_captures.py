@@ -1,6 +1,6 @@
-from cat_data_tools.calculate_effort_and_captures import calculate_effort_and_captures
-
 import pandas as pd
+
+from cat_data_tools.calculate_effort_and_captures import calculate_effort_and_captures
 
 
 def test_calculate_effort_and_captures():

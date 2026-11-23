@@ -1,6 +1,6 @@
-from cat_data_tools.update_status_traps import _update_status_traps
-
 import pandas as pd
+
+from cat_data_tools.update_status_traps import _update_status_traps
 
 
 def test_update_status_traps():

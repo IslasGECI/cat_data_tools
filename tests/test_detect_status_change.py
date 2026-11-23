@@ -1,12 +1,12 @@
+import pandas as pd
+import numpy as np
+
 from cat_data_tools.detect_status_change import (
     add_next_status_column,
     compute_trap_check_log,
     get_status_change,
     subsitute_check_traps_status,
 )
-
-import pandas as pd
-import numpy as np
 
 
 def tests_get_status_change():

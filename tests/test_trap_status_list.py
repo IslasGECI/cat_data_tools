@@ -1,9 +1,9 @@
+import pandas as pd
+
 from cat_data_tools.trap_status_list import (
     join_trap_ids_and_daily_status,
     add_lat_lon_to_active_traps_of_the_week,
 )
-
-import pandas as pd
 
 
 def test_join_trap_ids_and_daily_status():

@@ -1,8 +1,9 @@
+import pandas as pd
+
 from cat_data_tools.transform_effort_captures import (
     transform_effort_captures_to_dict,
     transform_effort_and_captures_from_cameras_and_traps_to_dict,
 )
-import pandas as pd
 
 df_traps = pd.read_csv("tests/data/esfuerzo_capturas_mensuales_gatos_socorro_3_years.csv")
 df_cameras = pd.read_csv("tests/data/monthly_cameras_effort_and_captures.csv")

@@ -1,9 +1,10 @@
-from cat_data_tools.cli import app
+import os
+import subprocess
+import pandas as pd
 import geci_test_tools as gtt
 from typer.testing import CliRunner
-import os
-import pandas as pd
-import subprocess
+
+from cat_data_tools.cli import app
 
 runner = CliRunner()
 

@@ -1,3 +1,8 @@
+import os
+import subprocess
+import pandas as pd
+import numpy as np
+
 from cat_data_tools.filter_data_by_month import (
     sum_monthly_effort_and_captures,
     summarize_effort_captures,
@@ -5,17 +10,12 @@ from cat_data_tools.filter_data_by_month import (
 )
 from cat_data_tools.cli import write_monthly_summary, write_monthly_summary_without_trappers
 
-import pandas as pd
-import numpy as np
-import subprocess
-import os
-
-weekly_data_path = "tests/data/weekly_effort_ISO.csv"
-monthly_trappers_path = "tests/data/monthly_trappers.csv"
+WEEKLY_DATA_PATH = "tests/data/weekly_effort_ISO.csv"
+MONTHLY_TRAPPERS_PATH = "tests/data/monthly_trappers.csv"
 
 
 def test_sum_monthly_effort_and_captures():
-    effort_data = pd.read_csv(weekly_data_path)
+    effort_data = pd.read_csv(WEEKLY_DATA_PATH)
     filtered_data = sum_monthly_effort_and_captures(effort_data)
     expected_rows = 7
     obtained_rows = len(filtered_data)
@@ -29,7 +29,7 @@ def test_sum_monthly_effort_and_captures():
 
 
 def test_summarize_effort_captures():
-    effort_data = pd.read_csv(weekly_data_path)
+    effort_data = pd.read_csv(WEEKLY_DATA_PATH)
     obtained_data = summarize_effort_captures(effort_data)
     obtained_columns = obtained_data.columns
     expected_columns = ["Esfuerzo", "Capturas", "Fecha"]
@@ -37,8 +37,8 @@ def test_summarize_effort_captures():
 
 
 def test_summarize_effort_captures_and_add_trappers():
-    monthly_trappers = pd.read_csv(monthly_trappers_path)
-    effort_data = pd.read_csv(weekly_data_path)
+    monthly_trappers = pd.read_csv(MONTHLY_TRAPPERS_PATH)
+    effort_data = pd.read_csv(WEEKLY_DATA_PATH)
     obtained_data = summarize_effort_captures_and_add_trappers(monthly_trappers, effort_data)
     obtained_columns = obtained_data.columns
     expected_columns = ["Esfuerzo", "Capturas", "Fecha", "Tramperos"]
@@ -53,7 +53,7 @@ def test_summarize_effort_captures_and_add_trappers():
 
 def test_write_monthly_summary_without_trappers():
     output_path = "tests/data/monthly_summary.csv"
-    write_monthly_summary_without_trappers(weekly_data_path, output_path)
+    write_monthly_summary_without_trappers(WEEKLY_DATA_PATH, output_path)
     obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
     assert ",Esfuerzo" not in obtained
     os.remove(output_path)
@@ -61,7 +61,7 @@ def test_write_monthly_summary_without_trappers():
 
 def test_write_monthly_summary():
     output_path = "tests/data/monthly_summary.csv"
-    write_monthly_summary(weekly_data_path, monthly_trappers_path, output_path)
+    write_monthly_summary(WEEKLY_DATA_PATH, MONTHLY_TRAPPERS_PATH, output_path)
     obtained = str(subprocess.check_output([f"cat {output_path}"], shell=True))
     assert ",NA" in obtained
     assert ",Esfuerzo" not in obtained
