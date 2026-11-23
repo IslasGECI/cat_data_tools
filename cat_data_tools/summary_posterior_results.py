@@ -2,7 +2,7 @@ def compute_posterior_summary_for_cameras_and_traps(
     posterior_samples, traps_effort_and_captures_df, cameras_effort_and_captures_df
 ):
     summary = {
-        "critical_effort": "NA",
+        "critical_effort": compute_traps_critical_effort(posterior_samples),
         "N0": compute_n0(posterior_samples),
         "r": compute_birth_rate(posterior_samples),
         "traps_q": "NA",
