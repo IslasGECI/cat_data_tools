@@ -3,7 +3,7 @@ def compute_posterior_summary_for_cameras_and_traps(
 ):
     summary = {
         "critical_effort": "NA",
-        "N0": compute_N0(posterior_samples),
+        "N0": compute_n0(posterior_samples),
         "r": compute_birth_rate(posterior_samples),
         "traps_q": "NA",
         "cameras_q": "NA",
@@ -18,7 +18,7 @@ def compute_posterior_summary_for_cameras_and_traps(
 def compute_posterior_summary(posterior_samples, effort_captures_df):
     summary = {
         "critical_effort": compute_critical_effort(posterior_samples),
-        "N0": compute_N0(posterior_samples),
+        "N0": compute_n0(posterior_samples),
         "r": compute_birth_rate(posterior_samples),
         "q": compute_catchability(posterior_samples),
         "time_series": compute_population_size_time_series(posterior_samples, effort_captures_df),
@@ -59,7 +59,7 @@ def compute_traps_critical_effort(posterior_samples):
     return int(posterior_df.critical_effort.quantile(0.9).round(0))
 
 
-def compute_N0(posterior_samples):
+def compute_n0(posterior_samples):
     return int(posterior_samples.N0.median().round(0))
 
 

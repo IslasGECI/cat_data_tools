@@ -1,3 +1,9 @@
+from importlib.metadata import version as metadata_version
+import json
+import warnings
+import pandas as pd
+import typer
+
 from cat_data_tools.filter_data_by_month import (
     summarize_effort_captures_and_add_trappers,
     summarize_effort_captures,
@@ -21,11 +27,6 @@ from cat_data_tools.trap_status_list import (
     add_lat_lon_to_active_traps_of_the_week,
     join_trap_ids_and_daily_status,
 )
-from cat_data_tools import __version__
-import pandas as pd
-import json
-import typer
-import warnings
 
 app = typer.Typer()
 
@@ -217,4 +218,4 @@ def update_status_traps(data_path: str = typer.Option(), output_path: str = type
 
 @app.command()
 def version():
-    print(__version__)
+    print(metadata_version("cat-data-tools"))

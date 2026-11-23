@@ -1,6 +1,9 @@
 """A Python module to process cats data"""
 
-__version__ = "1.5.0"
+from importlib.metadata import version as metadata_version
+
+__version__ = metadata_version("cat-data-tools")
+
 from .cli import (  # noqa
     filter_monthly_summary,
     join_traps_ids_and_daily_status,

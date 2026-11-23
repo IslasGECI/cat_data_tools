@@ -3,7 +3,7 @@ from cat_data_tools.summary_posterior_results import (
     compute_catchability,
     compute_critical_effort,
     compute_traps_critical_effort,
-    compute_N0,
+    compute_n0,
     compute_population_size_time_series,
     compute_posterior_summary,
     compute_posterior_summary_for_cameras_and_traps,
@@ -88,7 +88,7 @@ def test_compute_traps_critical_effort():
 
 
 def tests_compute_N0():
-    obtained = compute_N0(posterior_samples)
+    obtained = compute_n0(posterior_samples)
     assert isinstance(obtained, int)
     expected_N0 = 72
     assert obtained == expected_N0
