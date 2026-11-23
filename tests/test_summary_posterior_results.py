@@ -37,6 +37,7 @@ def test_compute_posterior_summary_for_cameras_and_traps():
     ]
 
     assert set(obtained["time_series"].keys()) == set(expected_time_series_keys)
+    assert isinstance(obtained["critical_effort"], int)
 
 
 posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
