@@ -201,6 +201,7 @@ def test_write_posterior_samples_summary():
     )
     assert result.exit_code == 0
     gtt.assert_exist(output_path)
+    gtt.if_exist_remove(output_path)
 
 
 def test_write_effort_captures_from_traps_and_cameras_to_json_stan():
