@@ -89,24 +89,38 @@ def adapt_date_column_name(input_path):
     return input_df.rename(columns={"Fecha": "Date"})
 
 
-@app.command()
+@app.command(deprecated=True)
 def write_posterior_samples_summary(
     posterior_results_path: str = typer.Option(),
     effort_captures_path: str = typer.Option(),
     output_path: str = typer.Option(),
 ):
+    warnings.warn(
+        "Deprecated. This will be removed in future versions of cat-data-tools package."
+        "This functionality is going to be move to internals on eradication-stan package."
+        "With this change improve operability of eradication-stan package and avoid duplication of code between cat-data-tools and eradication-stan packages.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     posterior_results_df = pd.read_csv(posterior_results_path)
     effort_captures_df = pd.read_csv(effort_captures_path)
     posterior_results_dict = compute_posterior_summary(posterior_results_df, effort_captures_df)
     write_dict_as_json(posterior_results_dict, output_path)
 
 
-@app.command()
+@app.command(deprecated=True)
 def write_effort_captures_from_traps_and_cameras_to_json_stan(
     traps_effort_captures_path: str = typer.Option(),
     cameras_effort_captures_path: str = typer.Option(),
     output_path: str = typer.Option(),
 ):
+    warnings.warn(
+        "Deprecated. This will be removed in future versions of cat-data-tools package."
+        "This functionality is going to be move to internals on eradication-stan package."
+        "With this change improve operability of eradication-stan package and avoid duplication of code between cat-data-tools and eradication-stan packages.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     traps_effort_captures_df = pd.read_csv(traps_effort_captures_path)
     cameras_effort_captures_df = pd.read_csv(cameras_effort_captures_path)
     combined_effort_captures_dict = transform_effort_and_captures_from_cameras_and_traps_to_dict(
@@ -115,10 +129,17 @@ def write_effort_captures_from_traps_and_cameras_to_json_stan(
     write_dict_as_json(combined_effort_captures_dict, output_path)
 
 
-@app.command()
+@app.command(deprecated=True)
 def write_effort_captures_as_json(
     effort_captures_path: str = typer.Option(), output_path: str = typer.Option()
 ):
+    warnings.warn(
+        "Deprecated. This will be removed in future versions of cat-data-tools package."
+        "This functionality is going to be move to internals on eradication-stan package."
+        "With this change improve operability of eradication-stan package and avoid duplication of code between cat-data-tools and eradication-stan packages.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     effort_captures_df = pd.read_csv(effort_captures_path)
     effort_captures_dict = transform_effort_captures_to_dict(effort_captures_df)
     write_dict_as_json(effort_captures_dict, output_path)

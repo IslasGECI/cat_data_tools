@@ -21,7 +21,10 @@ from .cli import (  # noqa
     write_trap_check_log,
     write_trap_daily_status,
 )
-from .summary_posterior_results import compute_posterior_summary_for_cameras_and_traps
+from .summary_posterior_results import (
+    compute_posterior_summary_for_cameras_and_traps,
+    compute_posterior_summary_for_traps,
+)
 from .transform_effort_captures import (  # noqa
     transform_effort_and_captures_from_cameras_and_traps_to_dict,
 )
