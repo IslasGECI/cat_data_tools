@@ -18,7 +18,6 @@ codecov_token = b714b20d-41cf-4612-8106-f264e0dfb6ef
 
 define lint
 	pylint \
-        --disable=bad-continuation \
         --disable=missing-class-docstring \
         --disable=missing-function-docstring \
         --disable=missing-module-docstring \
