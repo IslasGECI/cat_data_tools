@@ -16,9 +16,10 @@ posterior_samples_traps_and_cameras = pd.read_csv(
     "tests/data/posterior_results_traps_and_cameras.csv"
 )
 
+traps_effort_and_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
+
 
 def test_compute_posterior_summary_for_cameras_and_traps():
-    traps_effort_and_captures_df = pd.read_csv("tests/data/monthly_effort_captures_for_tests.csv")
     cameras_effort_and_captures_df = pd.read_csv("tests/data/cameras_monthly_effort_detections.csv")
     obtained = compute_posterior_summary_for_cameras_and_traps(
         posterior_samples_traps_and_cameras,
@@ -40,6 +41,25 @@ def test_compute_posterior_summary_for_cameras_and_traps():
     assert isinstance(obtained["critical_effort"], int)
     assert isinstance(obtained["traps_q"], float)
     assert isinstance(obtained["cameras_q"], float)
+
+
+def test_compute_posterior_summary_for_traps():
+    obtained = compute_posterior_summary_for_cameras_and_traps(
+        posterior_samples_traps_and_cameras,
+        traps_effort_and_captures_df,
+    )
+    expected_keys = ["critical_effort", "r", "traps_q", "N0", "time_series"]
+    assert set(obtained.keys()) == set(expected_keys)
+    expected_time_series_keys = [
+        "population_size",
+        "Date",
+        "Births",
+        "Captures",
+        "population_size_percentile_95",
+    ]
+
+    assert set(obtained["time_series"].keys()) == set(expected_time_series_keys)
+    assert isinstance(obtained["traps_q"], float)
 
 
 posterior_samples = pd.read_csv("tests/data/posterior_results.csv")
