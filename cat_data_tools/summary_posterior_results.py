@@ -68,8 +68,12 @@ def compute_birth_rate(posterior_samples):
 
 
 def compute_catchability(posterior_samples):
-    return posterior_samples.q.median()
+    return compute_median_for_column(posterior_samples, "q")
 
 
 def compute_traps_catchability(posterior_samples):
-    return posterior_samples["traps_q"].median()
+    return compute_median_for_column(posterior_samples, "traps_q")
+
+
+def compute_median_for_column(posterior_samples, column_name):
+    return posterior_samples[column_name].median()
