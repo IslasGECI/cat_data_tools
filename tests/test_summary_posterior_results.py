@@ -9,6 +9,7 @@ from cat_data_tools.summary_posterior_results import (
     compute_n0,
     compute_population_size_time_series,
     compute_posterior_summary,
+    compute_posterior_summary_for_traps,
     compute_posterior_summary_for_cameras_and_traps,
 )
 
@@ -44,7 +45,7 @@ def test_compute_posterior_summary_for_cameras_and_traps():
 
 
 def test_compute_posterior_summary_for_traps():
-    obtained = compute_posterior_summary_for_cameras_and_traps(
+    obtained = compute_posterior_summary_for_traps(
         posterior_samples_traps_and_cameras,
         traps_effort_and_captures_df,
     )
