@@ -27,4 +27,5 @@ from .summary_posterior_results import (  # noqa
 )
 from .transform_effort_captures import (  # noqa
     transform_effort_and_captures_from_cameras_and_traps_to_dict,
+    transform_effort_captures_to_dict,
 )
