@@ -98,7 +98,8 @@ def write_posterior_samples_summary(
     warnings.warn(
         "Deprecated. This will be removed in future versions of cat-data-tools package."
         "This functionality is going to be move to internals on eradication-stan package."
-        "With this change improve operability of eradication-stan package and avoid duplication of code between cat-data-tools and eradication-stan packages.",
+        "With this change improve operability of eradication-stan package and "
+        "avoid duplication of code between cat-data-tools and eradication-stan packages.",
         DeprecationWarning,
         stacklevel=2,
     )
@@ -117,7 +118,8 @@ def write_effort_captures_from_traps_and_cameras_to_json_stan(
     warnings.warn(
         "Deprecated. This will be removed in future versions of cat-data-tools package."
         "This functionality is going to be move to internals on eradication-stan package."
-        "With this change improve operability of eradication-stan package and avoid duplication of code between cat-data-tools and eradication-stan packages.",
+        "With this change improve operability of eradication-stan package and "
+        "avoid duplication of code between cat-data-tools and eradication-stan packages.",
         DeprecationWarning,
         stacklevel=2,
     )
@@ -136,7 +138,8 @@ def write_effort_captures_as_json(
     warnings.warn(
         "Deprecated. This will be removed in future versions of cat-data-tools package."
         "This functionality is going to be move to internals on eradication-stan package."
-        "With this change improve operability of eradication-stan package and avoid duplication of code between cat-data-tools and eradication-stan packages.",
+        "With this change improve operability of eradication-stan package and "
+        "avoid duplication of code between cat-data-tools and eradication-stan packages.",
         DeprecationWarning,
         stacklevel=2,
     )

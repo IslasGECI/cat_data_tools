@@ -5,6 +5,7 @@ import geci_test_tools as gtt
 from typer.testing import CliRunner
 
 from cat_data_tools.cli import app
+from cat_data_tools import __version__
 
 runner = CliRunner()
 
@@ -310,7 +311,7 @@ def test_app_write_monthly_summary():
         app,
         ["version"],
     )
-    assert "1.5.0" in result.stdout
+    assert __version__ in result.stdout
     assert result.exit_code == 0
 
     command = "write-monthly-summary"
