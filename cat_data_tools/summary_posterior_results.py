@@ -44,17 +44,17 @@ def compute_population_size_time_series(posterior_samples, effort_captures_df):
 
 
 def compute_critical_effort(posterior_samples):
-    posterior_df = posterior_samples.copy()
-    r = posterior_df["r"]
-    q = posterior_df["q"]
-    posterior_df["critical_effort"] = r / q
-    return int(posterior_df.critical_effort.quantile(0.9).round(0))
+    return compute_critical_effort_for(posterior_samples, "q")
 
 
 def compute_traps_critical_effort(posterior_samples):
+    return compute_critical_effort_for(posterior_samples, "traps_q")
+
+
+def compute_critical_effort_for(posterior_samples, key):
     posterior_df = posterior_samples.copy()
     r = posterior_df["r"]
-    q = posterior_df["traps_q"]
+    q = posterior_df[key]
     posterior_df["critical_effort"] = r / q
     return int(posterior_df.critical_effort.quantile(0.9).round(0))
 
