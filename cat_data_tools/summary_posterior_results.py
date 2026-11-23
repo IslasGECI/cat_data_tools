@@ -16,6 +16,19 @@ def compute_posterior_summary_for_cameras_and_traps(
     return summary
 
 
+def compute_posterior_summary_for_traps(posterior_samples, traps_effort_and_captures_df):
+    summary = {
+        "critical_effort": compute_traps_critical_effort(posterior_samples),
+        "N0": compute_n0(posterior_samples),
+        "r": compute_birth_rate(posterior_samples),
+        "traps_q": compute_traps_catchability(posterior_samples),
+        "time_series": compute_population_size_time_series(
+            posterior_samples, traps_effort_and_captures_df
+        ),
+    }
+    return summary
+
+
 def compute_posterior_summary(posterior_samples, effort_captures_df):
     summary = {
         "critical_effort": compute_critical_effort(posterior_samples),
